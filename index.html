@@ -787,7 +787,7 @@ ul{list-style:none}
       <div class="info-items">
         <div class="info-item"><div class="info-icon">📍</div><div><strong>Địa Chỉ</strong><p>Số 13 Ba Đình, Hà Nội, Việt Nam</p></div></div>
         <div class="info-item"><div class="info-icon">📞</div><div><strong>Điện Thoại</strong><p>0123 456 789</p></div></div>
-        <div class="info-item"><div class="info-icon">✉️</div><div><strong>Email</strong><p>godtravelcamonquykhach@gmail.com</p></div></div>
+        <div class="info-item"><div class="info-icon">✉️</div><div><strong>Email</strong><p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="15727a716167746370797674787a7b64606c7e7d74767d557278747c793b767a78">[email&#160;protected]</a></p></div></div>
         <div class="info-item"><div class="info-icon">🕐</div><div><strong>Giờ Làm Việc</strong><p>Thứ 2 – Thứ 6: 8:00 – 18:00<br>Thứ 7 – CN: 8:00 – 12:00</p></div></div>
       </div>
       <div class="social-section">
@@ -840,7 +840,7 @@ ul{list-style:none}
       <h5>Liên Hệ</h5>
       <p>📍 Số 13 Ba Đình, Hà Nội</p>
       <p>📞 0123 456 789</p>
-      <p>✉️ godtravelcamonquykhach@gmail.com</p>
+      <p>✉️ <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="8bece4effff9eafdeee7e8eae6e4e5fafef2e0e3eae8e3cbece6eae2e7a5e8e4e6">[email&#160;protected]</a></p>
       <p>🕐 Thứ 2 – Thứ 6: 8:00 – 18:00<br>Thứ 7 – CN: 8:00 – 12:00</p>
     </div>
     <div class="footer-col">
@@ -929,7 +929,7 @@ ul{list-style:none}
   </div>
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 // ===================== NAVIGATION =====================
 function showPage(name) {
   document.querySelectorAll('.page-section').forEach(s => s.style.display = 'none');
@@ -988,27 +988,91 @@ function closeBookingModal() {
 function closeModalOutside(e) {
   if (e.target.id === 'bookingModal') closeBookingModal();
 }
-function confirmBooking() {
+async function confirmBooking() {
   const name = document.getElementById('bName').value.trim();
   const phone = document.getElementById('bPhone').value.trim();
   const email = document.getElementById('bEmail').value.trim();
-  if (!name || !phone || !email) { alert('Vui lòng điền đầy đủ thông tin bắt buộc!'); return; }
+  const date = document.getElementById('bDate').value;
+  const people = document.getElementById('bPeople').value;
+  const tourName = document.getElementById('modalTourName').textContent;
+  const note = document.querySelector('#bookingModal textarea') ? document.querySelector('#bookingModal textarea').value : '';
+  if (!name || !phone || !email) { alert('Vui lòng điền đầy đủ thông tin bắt buộc!'); return;  }
+
+  // ========================================================
+  // HƯỚNG DẪN: Thay các giá trị dưới đây bằng URL và entry ID thực của bạn
+  // 1. Tạo Google Form với các mục: Họ tên, SĐT, Email, Tên tour, Ngày, Số người, Ghi chú
+  // 2. Mở form preview → View Page Source → tìm "action=" và "entry."
+  // 3. Dán URL và entry ID vào đây
+  const BOOKING_FORM_ACTION = 'https://docs.google.com/forms/u/1/d/1mCCcZg63HpM6lCNrf3kcz1CUHvB1utHnuCmrrxypr8E/previewResponse';
+  const BOOKING_ENTRIES = {
+    name:    'entry.344376201', // Thay bằng entry ID trường "Họ và tên"
+    phone:   'entry.1169552198', // Thay bằng entry ID trường "Số điện thoại"
+    email:   'entry.830975505', // Thay bằng entry ID trường "Email"
+    tour:    'entry.000000004', // Thay bằng entry ID trường "Tên tour"
+    date:    'entry.000000005', // Thay bằng entry ID trường "Ngày khởi hành"
+    people:  'entry.000000006', // Thay bằng entry ID trường "Số người"
+    note:    'entry.000000007', // Thay bằng entry ID trường "Ghi chú"
+  };
+  // ========================================================
+
+  const formData = new FormData();
+  formData.append(BOOKING_ENTRIES.name, name);
+  formData.append(BOOKING_ENTRIES.phone, phone);
+  formData.append(BOOKING_ENTRIES.email, email);
+  formData.append(BOOKING_ENTRIES.tour, tourName);
+  formData.append(BOOKING_ENTRIES.date, date);
+  formData.append(BOOKING_ENTRIES.people, people);
+  formData.append(BOOKING_ENTRIES.note, note);
+
+  try {
+    await fetch(BOOKING_FORM_ACTION, { method: 'POST', body: formData, mode: 'no-cors' });
+  } catch(e) { /* no-cors luôn throw, nhưng dữ liệu vẫn được gửi */ }
+
   closeBookingModal();
   setTimeout(() => alert('✅ Đặt tour thành công!\nChúng tôi sẽ liên hệ với bạn trong vòng 24 giờ.'), 200);
 }
 document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeBookingModal(); closeArticleModal(); closeDestModal(); } });
 
 // ===================== CONTACT FORM =====================
-function submitContactForm() {
+async function submitContactForm() {
   const name = document.getElementById('cfName').value.trim();
   const phone = document.getElementById('cfPhone').value.trim();
   const email = document.getElementById('cfEmail').value.trim();
+  const subject = document.getElementById('cfSubject').value;
   const msg = document.getElementById('cfMsg').value.trim();
   if (!name || !phone || !email || !msg) { alert('Vui lòng điền đầy đủ thông tin bắt buộc (*)'); return; }
+
+  // ========================================================
+  // HƯỚNG DẪN: Thay các giá trị dưới đây bằng URL và entry ID thực của bạn
+  // 1. Tạo Google Form với các mục: Họ tên, SĐT, Email, Chủ đề, Nội dung
+  // 2. Mở form preview → View Page Source → tìm "action=" và "entry."
+  // 3. Dán URL và entry ID vào đây
+  const CONTACT_FORM_ACTION = 'https://docs.google.com/forms/u/1/d/1mCCcZg63HpM6lCNrf3kcz1CUHvB1utHnuCmrrxypr8E/previewResponse';
+  const CONTACT_ENTRIES = {
+    name:    'entry.344376201', // Thay bằng entry ID trường "Họ và tên"
+    phone:   'entry.1169552198', // Thay bằng entry ID trường "Số điện thoại"
+    email:   'entry.830975505', // Thay bằng entry ID trường "Email"
+    subject: 'entry.1082722695', // Thay bằng entry ID trường "Chủ đề"
+    msg:     'entry.744657057', // Thay bằng entry ID trường "Nội dung"
+  };
+  // ========================================================
+
+  const formData = new FormData();
+  formData.append(CONTACT_ENTRIES.name, name);
+  formData.append(CONTACT_ENTRIES.phone, phone);
+  formData.append(CONTACT_ENTRIES.email, email);
+  formData.append(CONTACT_ENTRIES.subject, subject);
+  formData.append(CONTACT_ENTRIES.msg, msg);
+
+  try {
+    await fetch(CONTACT_FORM_ACTION, { method: 'POST', body: formData, mode: 'no-cors' });
+  } catch(e) { /* no-cors luôn throw, nhưng dữ liệu vẫn được gửi */ }
+
   document.getElementById('formSuccess').style.display = 'block';
   document.getElementById('cfName').value = '';
   document.getElementById('cfPhone').value = '';
   document.getElementById('cfEmail').value = '';
+  document.getElementById('cfSubject').value = '';
   document.getElementById('cfMsg').value = '';
 }
 
@@ -1443,16 +1507,41 @@ function openDestDetail(id) {
     </div>
   `;
   document.getElementById('destModalBody').innerHTML = body;
-  document.getElementById('destModal').classList.add('open');
+  const modal = document.getElementById('destModal');
+  modal.classList.add('open');
   document.body.style.overflow = 'hidden';
 }
 function closeDestModal() {
-  document.getElementById('destModal').classList.remove('open');
+  const modal = document.getElementById('destModal');
+  if (modal) modal.classList.remove('open');
   document.body.style.overflow = '';
 }
 function closeDestOutside(e) {
   if (e.target.id === 'destModal') closeDestModal();
 }
+
+// ===================== SCROLL REVEAL =====================
+function initReveal() {
+  const items = document.querySelectorAll('.dest-card, .tour-card, .blog-card, .testimonial-card, .stat-item');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+  items.forEach(item => {
+    item.style.opacity = '0';
+    item.style.transform = 'translateY(20px)';
+    item.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+    observer.observe(item);
+  });
+}
+document.addEventListener('DOMContentLoaded', () => {
+  initReveal();
+  showPage('home');
+});
 </script>
 </body>
 </html>
