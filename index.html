@@ -1,0 +1,1458 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>GodTravel – Hành Trình Của Bạn Bắt Đầu Ở Đây</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Be+Vietnam+Pro:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--teal:#1a6b5a;--teal-dark:#144d41;--teal-light:#2a8a74;--orange:#e87c2a;--orange-hover:#d06820;--gold:#e8a94d;--white:#ffffff;--off-white:#f8f6f3;--gray-light:#f0eeeb;--gray:#888;--dark:#1a1a1a;--text:#333;--text-light:#555;--font-display:'Playfair Display',Georgia,serif;--font-body:'Be Vietnam Pro',sans-serif;--radius:12px;--radius-sm:8px;--shadow:0 4px 20px rgba(0,0,0,0.08);--shadow-hover:0 8px 40px rgba(0,0,0,0.15);--transition:0.3s ease}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--font-body);color:var(--text);background:var(--white);line-height:1.65;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{text-decoration:none;color:inherit;cursor:pointer}
+input,select,textarea,button{font-family:inherit}
+ul{list-style:none}
+.container{max-width:1180px;margin:0 auto;padding:0 20px}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#f0eeeb}
+::-webkit-scrollbar-thumb{background:var(--teal);border-radius:3px}
+
+/* NAVBAR */
+.navbar{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(255,255,255,0.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,0.07);transition:box-shadow var(--transition)}
+.navbar.scrolled{box-shadow:0 2px 20px rgba(0,0,0,0.1)}
+.nav-inner{display:flex;align-items:center;gap:32px;height:68px}
+.logo{display:flex;align-items:center;gap:8px;font-family:var(--font-display);font-size:1.4rem;font-weight:700;color:var(--teal);flex-shrink:0;cursor:pointer}
+.logo strong{color:var(--orange)}
+.logo-icon{font-size:1.1rem;color:var(--gold)}
+.logo-white{color:var(--white)}
+.logo-white strong{color:var(--gold)}
+.nav-links{display:flex;gap:28px;flex:1}
+.nav-links a{font-size:.9rem;font-weight:500;color:var(--text);transition:color var(--transition);position:relative;cursor:pointer}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--orange);transition:width var(--transition)}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-links a.active,.nav-links a:hover{color:var(--teal)}
+.nav-right{display:flex;align-items:center;gap:16px;margin-left:auto}
+.phone-link{font-size:.85rem;font-weight:600;color:var(--teal);white-space:nowrap}
+.hamburger{display:none;background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--teal);margin-left:auto}
+.mobile-menu{display:none;flex-direction:column;padding:16px 20px;background:white;border-top:1px solid #eee}
+.mobile-menu a{padding:10px 0;font-weight:500;color:var(--text);border-bottom:1px solid #f0f0f0;cursor:pointer}
+.mobile-menu.open{display:flex}
+
+/* BUTTONS */
+.btn-orange{display:inline-block;background:var(--orange);color:white;padding:10px 22px;border-radius:50px;font-weight:600;font-size:.9rem;cursor:pointer;border:none;transition:background var(--transition),transform var(--transition),box-shadow var(--transition)}
+.btn-orange:hover{background:var(--orange-hover);transform:translateY(-1px);box-shadow:0 4px 16px rgba(232,124,42,.35)}
+.btn-orange.small{padding:8px 18px;font-size:.85rem}
+.btn-teal{display:inline-block;background:var(--teal);color:white;padding:12px 28px;border-radius:50px;font-weight:600;font-size:.95rem;cursor:pointer;border:none;transition:all var(--transition)}
+.btn-teal:hover{background:var(--teal-dark);transform:translateY(-1px)}
+.btn-teal.full-width{width:100%;text-align:center}
+.btn-outline{display:inline-block;background:transparent;color:var(--teal);padding:10px 26px;border-radius:50px;border:2px solid var(--teal);font-weight:600;font-size:.9rem;cursor:pointer;transition:all var(--transition)}
+.btn-outline:hover{background:var(--teal);color:white}
+.btn-ghost{display:inline-block;background:transparent;color:white;padding:10px 26px;border-radius:50px;border:2px solid white;font-weight:600;cursor:pointer;transition:all var(--transition)}
+.btn-ghost:hover{background:white;color:var(--teal)}
+.center-btn{text-align:center;margin-top:40px}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;padding-top:68px;overflow:hidden}
+.hero-bg{position:absolute;inset:0}
+.hero-bg img{width:100%;height:100%;object-fit:cover;animation:zoomIn 15s ease-in-out infinite alternate}
+@keyframes zoomIn{from{transform:scale(1)}to{transform:scale(1.05)}}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(20,60,48,.85) 0%,rgba(20,30,40,.65) 100%)}
+.hero-content{position:relative;z-index:2;color:white;max-width:700px;padding:80px 20px;animation:fadeUp .8s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.hero-sub{color:var(--gold);font-size:.95rem;font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px}
+.hero-content h1{font-family:var(--font-display);font-size:clamp(2.5rem,5vw,4rem);font-weight:800;line-height:1.15;margin-bottom:20px}
+.hero-content h1 span{color:var(--gold)}
+.hero-desc{font-size:1.05rem;opacity:.9;margin-bottom:32px;max-width:560px}
+.hero-search{display:flex;gap:10px;background:white;padding:8px;border-radius:50px;max-width:600px;margin-bottom:20px;box-shadow:0 4px 30px rgba(0,0,0,.2)}
+.search-wrap{display:flex;align-items:center;flex:1;gap:8px;padding:0 12px}
+.search-icon{color:var(--gray);font-size:1rem}
+.hero-search input{border:none;outline:none;flex:1;font-size:.9rem;color:var(--text);background:transparent}
+.search-select{border:none;outline:none;font-size:.85rem;color:var(--text);background:transparent;cursor:pointer;padding:0 8px}
+.hero-tags{display:flex;flex-wrap:wrap;gap:8px}
+.hero-tags span{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:white;padding:5px 14px;border-radius:50px;font-size:.82rem;cursor:pointer;transition:all var(--transition);backdrop-filter:blur(4px)}
+.hero-tags span:hover{background:rgba(255,255,255,.25)}
+.hero-rating{position:absolute;bottom:40px;right:40px;z-index:2;background:rgba(255,255,255,.15);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.25);color:white;padding:14px 20px;border-radius:var(--radius);text-align:center;animation:fadeUp 1s .3s ease both}
+.hero-rating .small{font-size:.78rem;opacity:.8}
+
+/* STATS */
+.stats{background:white;padding:32px 0;border-bottom:1px solid #eee}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;text-align:center}
+.stat-item h3{font-family:var(--font-display);font-size:2.2rem;color:var(--teal);font-weight:800}
+.stat-item h3 span{color:var(--orange)}
+.stat-item p{color:var(--gray);font-size:.88rem;font-weight:500}
+
+/* SECTIONS */
+.section{padding:72px 0}
+.section-header{text-align:center;margin-bottom:48px;position:relative}
+.section-label{color:var(--orange);font-size:.78rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:10px;display:block}
+.section-header h2{font-family:var(--font-display);font-size:clamp(1.8rem,3vw,2.6rem);color:var(--dark);font-weight:700;margin-bottom:12px}
+.section-desc{color:var(--gray);max-width:560px;margin:0 auto;font-size:.95rem}
+.see-all-link{position:absolute;right:0;top:50%;transform:translateY(-50%);color:var(--teal);font-weight:600;font-size:.9rem}
+.see-all-link:hover{color:var(--orange)}
+
+/* DESTINATION CARDS */
+.dest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.dest-grid-4{grid-template-columns:repeat(4,1fr)}
+.dest-card{background:white;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:transform var(--transition),box-shadow var(--transition);cursor:pointer}
+.dest-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-hover)}
+.dest-img{position:relative;overflow:hidden;height:200px}
+.dest-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.dest-card:hover .dest-img img{transform:scale(1.05)}
+.badge{position:absolute;top:12px;left:12px;padding:4px 10px;border-radius:50px;font-size:.72rem;font-weight:700;color:white}
+.badge-blue{background:#2b7cb8}
+.badge-teal{background:var(--teal)}
+.badge-green{background:#2e8b57}
+.badge-orange{background:var(--orange)}
+.rating-badge{position:absolute;top:12px;right:12px;background:rgba(0,0,0,.55);color:white;padding:3px 8px;border-radius:50px;font-size:.75rem;font-weight:600;backdrop-filter:blur(4px)}
+.dest-body{padding:16px}
+.dest-body h4{font-family:var(--font-display);font-size:1.1rem;font-weight:700;margin-bottom:4px;color:var(--dark)}
+.dest-loc{color:var(--gray);font-size:.8rem;margin-bottom:8px}
+.dest-body p{font-size:.85rem;color:var(--text-light);margin-bottom:12px}
+.link-arrow{color:var(--teal);font-size:.85rem;font-weight:600;transition:color var(--transition)}
+.link-arrow:hover{color:var(--orange)}
+.dest-footer{display:flex;justify-content:space-between;align-items:center;margin-top:8px}
+.tour-count{color:var(--gray);font-size:.8rem}
+.results-count{color:var(--gray);font-size:.9rem}
+
+/* TOUR CARDS */
+.tour-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.tour-card{background:white;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:transform var(--transition),box-shadow var(--transition)}
+.tour-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-hover)}
+.tour-img{position:relative;height:210px;overflow:hidden}
+.tour-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.tour-card:hover .tour-img img{transform:scale(1.05)}
+.tour-badge{position:absolute;top:12px;left:12px;background:var(--orange);color:white;padding:4px 10px;border-radius:50px;font-size:.72rem;font-weight:700}
+.tour-badge.new{background:var(--teal)}
+.tour-body{padding:16px}
+.tour-meta{display:flex;justify-content:space-between;font-size:.78rem;color:var(--gray);margin-bottom:8px}
+.tour-body h4{font-family:var(--font-display);font-size:1.05rem;font-weight:700;color:var(--dark);margin-bottom:6px}
+.tour-body p{font-size:.84rem;color:var(--text-light);margin-bottom:12px}
+.tour-info{display:flex;gap:12px;font-size:.78rem;color:var(--gray);margin-bottom:14px}
+.tour-footer{display:flex;justify-content:space-between;align-items:center;padding-top:12px;border-top:1px solid #f0f0f0}
+.price{font-size:1.05rem;font-weight:700;color:var(--teal)}
+.price span{font-size:.75rem;font-weight:400;color:var(--gray)}
+
+/* PROMO BANNER */
+.promo-banner{position:relative;overflow:hidden;padding:80px 0;text-align:center}
+.promo-bg{position:absolute;inset:0}
+.promo-bg img{width:100%;height:100%;object-fit:cover}
+.promo-overlay{position:absolute;inset:0;background:linear-gradient(135deg,rgba(20,77,65,.9),rgba(30,50,40,.85))}
+.promo-content{position:relative;z-index:2;color:white}
+.promo-label{color:var(--gold);font-size:.78rem;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:16px}
+.promo-content h2{font-family:var(--font-display);font-size:clamp(1.8rem,3.5vw,3rem);font-weight:800;margin-bottom:16px}
+.promo-content h2 span{color:var(--gold)}
+.promo-content p{max-width:500px;margin:0 auto 32px;opacity:.9}
+.promo-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+
+/* BLOG CARDS */
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.blog-grid-3{grid-template-columns:repeat(3,1fr)}
+.blog-card{background:white;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);transition:transform var(--transition),box-shadow var(--transition);cursor:pointer}
+.blog-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-hover)}
+.blog-img{position:relative;height:200px;overflow:hidden}
+.blog-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.blog-card:hover .blog-img img{transform:scale(1.05)}
+.blog-tag{position:absolute;top:12px;left:12px;background:var(--teal);color:white;padding:4px 10px;border-radius:50px;font-size:.72rem;font-weight:700}
+.blog-tag.inline{position:static;display:inline-block;margin-bottom:12px}
+.blog-body{padding:16px}
+.blog-date{font-size:.78rem;color:var(--gray);margin-bottom:8px}
+.blog-body h4{font-family:var(--font-display);font-size:1rem;font-weight:700;color:var(--dark);margin-bottom:8px;line-height:1.4}
+.blog-body p{font-size:.84rem;color:var(--text-light);margin-bottom:12px}
+.read-more{color:var(--teal);font-size:.85rem;font-weight:600}
+.read-more:hover{color:var(--orange)}
+.blog-author-row{display:flex;align-items:center;gap:6px;margin-bottom:8px;font-size:.78rem;color:var(--gray)}
+.dot{color:#ccc}
+
+/* FEATURED POST */
+.featured-post{display:grid;grid-template-columns:1fr 1fr;gap:0;background:white;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);margin-bottom:48px;cursor:pointer}
+.featured-post:hover{box-shadow:var(--shadow-hover)}
+.featured-img{position:relative;height:400px}
+.featured-img img{width:100%;height:100%;object-fit:cover}
+.featured-label{position:absolute;top:16px;left:16px;background:var(--orange);color:white;padding:5px 12px;border-radius:50px;font-size:.72rem;font-weight:700}
+.featured-content{padding:36px;display:flex;flex-direction:column;justify-content:center}
+.featured-content h2{font-family:var(--font-display);font-size:1.7rem;font-weight:700;color:var(--dark);margin-bottom:14px;line-height:1.3}
+.featured-content p{color:var(--text-light);margin-bottom:20px;font-size:.93rem}
+.blog-tags-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.blog-tags-row span{background:var(--gray-light);color:var(--teal);padding:4px 10px;border-radius:50px;font-size:.78rem;font-weight:600}
+.blog-meta{margin-bottom:16px}
+
+/* TESTIMONIALS */
+.testimonials{background:var(--off-white)}
+.testimonial-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.testimonial-card{background:white;padding:28px;border-radius:var(--radius);box-shadow:var(--shadow)}
+.testimonial-card .stars{margin-bottom:12px;font-size:.9rem}
+.testimonial-card p{color:var(--text-light);font-size:.9rem;font-style:italic;margin-bottom:20px;line-height:1.6}
+.reviewer{display:flex;align-items:center;gap:12px}
+.avatar{width:40px;height:40px;border-radius:50%;background:var(--teal);color:white;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.85rem;flex-shrink:0}
+.avatar.sm{width:28px;height:28px;font-size:.7rem}
+.reviewer strong{display:block;font-size:.88rem;color:var(--dark)}
+.reviewer span{font-size:.78rem;color:var(--gray)}
+
+/* FOOTER */
+.footer{background:#0f2e26;color:rgba(255,255,255,.75);padding:60px 0 0}
+.footer-grid{display:grid;grid-template-columns:2fr 1.5fr 1.5fr 2fr;gap:40px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,.1)}
+.footer-brand p{font-size:.85rem;line-height:1.7;margin-top:12px;margin-bottom:20px}
+.social-links{display:flex;gap:10px;flex-wrap:wrap}
+.social-links a{background:rgba(255,255,255,.1);color:white;padding:6px 12px;border-radius:50px;font-size:.78rem;transition:background var(--transition)}
+.social-links a:hover{background:var(--teal)}
+.footer-col h5{color:white;font-size:.9rem;font-weight:700;margin-bottom:14px;letter-spacing:.5px}
+.footer-col a{display:block;font-size:.83rem;padding:4px 0;transition:color var(--transition);cursor:pointer}
+.footer-col a:hover{color:var(--gold)}
+.footer-col p{font-size:.83rem;line-height:1.7;margin-bottom:6px}
+.newsletter{display:flex;flex-direction:column;gap:10px;margin-top:12px}
+.newsletter input{padding:10px 14px;border:1px solid rgba(255,255,255,.15);border-radius:8px;background:rgba(255,255,255,.07);color:white;font-size:.85rem;outline:none}
+.newsletter input::placeholder{color:rgba(255,255,255,.4)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding:20px 0;font-size:.8rem}
+.footer-bottom a{margin-left:16px;cursor:pointer}
+.footer-bottom a:hover{color:var(--gold)}
+
+/* PAGE HERO */
+.page-hero{position:relative;height:340px;margin-top:68px;display:flex;align-items:center;overflow:hidden}
+.page-hero-bg{position:absolute;inset:0}
+.page-hero-bg img{width:100%;height:100%;object-fit:cover}
+.page-hero-content{position:relative;z-index:2;color:white;text-align:center;width:100%}
+.page-hero-content h1{font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem);font-weight:800;margin-bottom:12px}
+.page-hero-content p{font-size:1rem;opacity:.9;max-width:500px;margin:0 auto}
+
+/* FILTER BAR */
+.filter-bar{background:white;padding:20px 0;border-bottom:1px solid #eee;position:sticky;top:68px;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,.06)}
+.filter-inner{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.search-filter{display:flex;align-items:center;gap:8px;flex:1;min-width:200px;border:1.5px solid #ddd;border-radius:8px;padding:8px 12px;background:#fafafa}
+.search-filter input{border:none;outline:none;flex:1;font-size:.88rem;background:transparent}
+.filter-cats{display:flex;gap:8px;flex-wrap:wrap}
+.cat-btn{padding:7px 16px;border-radius:50px;border:1.5px solid #ddd;background:transparent;font-size:.82rem;font-weight:600;cursor:pointer;color:var(--text);transition:all var(--transition)}
+.cat-btn:hover{border-color:var(--teal);color:var(--teal)}
+.cat-btn.active{background:var(--teal);color:white;border-color:var(--teal)}
+
+/* CONTACT PAGE */
+.contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.contact-form-card,.contact-info-card{background:white;padding:36px;border-radius:var(--radius);box-shadow:var(--shadow)}
+.contact-form .form-group{margin-bottom:16px}
+.contact-form label{display:block;font-size:.83rem;font-weight:600;margin-bottom:6px;color:var(--text)}
+.contact-form input,.contact-form select,.contact-form textarea{width:100%;padding:10px 14px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:.88rem;outline:none;transition:border-color var(--transition);background:#fafafa}
+.contact-form input:focus,.contact-form select:focus,.contact-form textarea:focus{border-color:var(--teal);background:white}
+.form-success{background:#e8f5e9;color:#2e7d32;padding:12px 16px;border-radius:8px;margin-top:12px;font-size:.88rem}
+.info-items{margin:24px 0}
+.info-item{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px solid #f0f0f0}
+.info-item:last-child{border-bottom:none}
+.info-icon{font-size:1.2rem;width:36px;height:36px;background:var(--off-white);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.info-item strong{font-size:.85rem;color:var(--dark);display:block;margin-bottom:3px}
+.info-item p{font-size:.83rem;color:var(--gray);margin:0}
+.social-section{margin-top:20px}
+.social-section strong{font-size:.85rem;display:block;margin-bottom:10px}
+.social-row{display:flex;gap:8px;flex-wrap:wrap}
+.social-btn{padding:6px 14px;border-radius:50px;font-size:.78rem;font-weight:600;color:white;transition:opacity var(--transition)}
+.social-btn:hover{opacity:.85}
+.social-btn.fb{background:#1877f2}
+.social-btn.ig{background:#e1306c}
+.social-btn.yt{background:#ff0000}
+.social-btn.tk{background:#000}
+.map-placeholder{margin-top:20px;background:var(--off-white);border-radius:10px;overflow:hidden;height:140px;display:flex;align-items:center;justify-content:center}
+.map-inner{text-align:center}
+.map-pin{font-size:2rem;margin-bottom:6px}
+.map-inner p{font-size:.85rem;color:var(--gray);margin-bottom:8px}
+.map-link{font-size:.82rem;color:var(--teal);font-weight:600}
+.google-form-embed{margin-top:32px;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.google-form-embed iframe{width:100%;border:none;border-radius:var(--radius)}
+.google-form-note{background:#fff8e1;border:1px solid #ffd54f;border-radius:8px;padding:12px 16px;font-size:.83rem;color:#5d4037;margin-bottom:12px}
+
+/* BOOKING MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:2000;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px)}
+.modal-overlay.open{display:flex;animation:fadeIn .25s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal{background:white;border-radius:var(--radius);max-width:560px;width:100%;max-height:90vh;overflow-y:auto;animation:slideUp .3s ease}
+@keyframes slideUp{from{transform:translateY(30px);opacity:0}to{transform:translateY(0);opacity:1}}
+.modal-header{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;border-bottom:1px solid #eee}
+.modal-header h3{font-family:var(--font-display);font-size:1.3rem;font-weight:700}
+.modal-close{background:none;border:none;font-size:1.2rem;cursor:pointer;color:var(--gray);width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background var(--transition)}
+.modal-close:hover{background:#f0f0f0}
+.tour-summary{display:flex;gap:14px;align-items:center;padding:16px 24px;background:#f8fbfa;border-bottom:1px solid #eee}
+.tour-thumb{width:60px;height:60px;border-radius:8px;overflow:hidden;flex-shrink:0}
+.tour-thumb img{width:100%;height:100%;object-fit:cover}
+.tour-summary h4{font-size:.95rem;font-weight:700;margin-bottom:3px}
+.tour-summary p{font-size:.78rem;color:var(--gray);margin:0}
+.modal-price{color:var(--teal)!important;font-weight:700!important;font-size:1rem!important}
+.modal-body{padding:20px 24px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-group{margin-bottom:14px}
+.form-group label{display:block;font-size:.82rem;font-weight:600;margin-bottom:5px;color:var(--text)}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:10px 12px;border:1.5px solid #e0e0e0;border-radius:8px;font-size:.87rem;outline:none;transition:border-color var(--transition)}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--teal)}
+.form-group textarea{resize:vertical;min-height:80px}
+.modal-footer{display:flex;gap:12px;padding:16px 24px;border-top:1px solid #eee}
+.modal-footer .btn-outline,.modal-footer .btn-orange{flex:1;text-align:center}
+
+/* ARTICLE MODAL */
+.article-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:3000;align-items:flex-start;justify-content:center;padding:20px;overflow-y:auto;backdrop-filter:blur(6px)}
+.article-modal.open{display:flex;animation:fadeIn .25s ease}
+.article-container{background:white;border-radius:var(--radius);max-width:800px;width:100%;margin:auto;overflow:hidden;animation:slideUp .3s ease}
+.article-cover{position:relative;height:360px;overflow:hidden}
+.article-cover img{width:100%;height:100%;object-fit:cover}
+.article-cover-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 50%)}
+.article-cover-meta{position:absolute;bottom:24px;left:28px;right:28px;color:white}
+.article-cover-meta .blog-tag.inline{background:var(--orange);color:white;margin-bottom:12px}
+.article-cover-meta h1{font-family:var(--font-display);font-size:clamp(1.4rem,3vw,2rem);font-weight:800;line-height:1.25;margin-bottom:12px}
+.article-cover-meta .article-byline{font-size:.82rem;opacity:.85}
+.article-close-btn{position:absolute;top:16px;right:16px;background:rgba(0,0,0,.5);color:white;border:none;width:36px;height:36px;border-radius:50%;font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background var(--transition);z-index:10}
+.article-close-btn:hover{background:rgba(0,0,0,.8)}
+.article-body{padding:36px}
+.article-body h2{font-family:var(--font-display);font-size:1.35rem;font-weight:700;color:var(--dark);margin:28px 0 14px}
+.article-body h3{font-size:1.05rem;font-weight:700;color:var(--teal);margin:20px 0 10px}
+.article-body p{font-size:.93rem;color:var(--text);line-height:1.8;margin-bottom:14px}
+.article-body ul{margin:0 0 14px 20px;list-style:disc}
+.article-body ul li{font-size:.93rem;color:var(--text);line-height:1.8;margin-bottom:6px}
+.article-body .tip-box{background:#e8f5f0;border-left:4px solid var(--teal);padding:14px 18px;border-radius:0 8px 8px 0;margin:20px 0;font-size:.88rem;color:var(--text)}
+.article-body .tip-box strong{color:var(--teal);display:block;margin-bottom:4px}
+.article-body .highlight-box{background:#fff8e1;border:1px solid #ffd54f;padding:14px 18px;border-radius:8px;margin:20px 0;font-size:.88rem}
+.article-footer{padding:20px 36px;border-top:1px solid #eee;display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.article-tag-pill{background:var(--gray-light);color:var(--teal);padding:4px 12px;border-radius:50px;font-size:.78rem;font-weight:600}
+
+/* DEST DETAIL MODAL */
+.dest-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:3000;align-items:flex-start;justify-content:center;padding:20px;overflow-y:auto;backdrop-filter:blur(6px)}
+.dest-modal.open{display:flex;animation:fadeIn .25s ease}
+.dest-container{background:white;border-radius:var(--radius);max-width:860px;width:100%;margin:auto;overflow:hidden;animation:slideUp .3s ease}
+.dest-cover{position:relative;height:380px}
+.dest-cover img{width:100%;height:100%;object-fit:cover}
+.dest-cover-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.75) 0%,transparent 55%)}
+.dest-cover-meta{position:absolute;bottom:24px;left:28px;right:28px;color:white}
+.dest-cover-meta h1{font-family:var(--font-display);font-size:clamp(1.8rem,3vw,2.4rem);font-weight:800;margin-bottom:6px}
+.dest-cover-meta p{font-size:.9rem;opacity:.85}
+.dest-modal-body{padding:32px}
+.dest-modal-body h2{font-family:var(--font-display);font-size:1.2rem;font-weight:700;color:var(--dark);margin:20px 0 10px}
+.dest-modal-body p{font-size:.92rem;color:var(--text);line-height:1.75;margin-bottom:12px}
+.dest-highlights{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:16px 0}
+.dest-highlight-item{display:flex;gap:10px;align-items:flex-start;padding:12px;background:var(--off-white);border-radius:8px;font-size:.85rem}
+.dest-highlight-icon{font-size:1.1rem;flex-shrink:0}
+.dest-info-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:20px 0}
+.dest-info-item{text-align:center;padding:16px;background:var(--off-white);border-radius:var(--radius-sm)}
+.dest-info-item .icon{font-size:1.5rem;margin-bottom:6px}
+.dest-info-item strong{display:block;font-size:.82rem;color:var(--dark);margin-bottom:3px}
+.dest-info-item span{font-size:.78rem;color:var(--gray)}
+.dest-modal-footer{padding:20px 32px;border-top:1px solid #eee;display:flex;gap:12px;justify-content:flex-end}
+
+/* SECTION COLORS */
+.destinations{background:var(--off-white)}
+.tours-section{background:#f4f9f7}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .dest-grid{grid-template-columns:repeat(2,1fr)}
+  .dest-grid-4{grid-template-columns:repeat(2,1fr)}
+  .tour-grid{grid-template-columns:repeat(2,1fr)}
+  .blog-grid{grid-template-columns:repeat(2,1fr)}
+  .testimonial-grid{grid-template-columns:1fr 1fr}
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:30px}
+  .contact-layout{grid-template-columns:1fr}
+  .featured-post{grid-template-columns:1fr}
+  .featured-img{height:240px}
+  .see-all-link{position:static;display:block;margin-top:8px}
+  .section-header{text-align:left}
+  .section-desc{margin:0}
+  .dest-highlights{grid-template-columns:1fr}
+  .dest-info-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+  .nav-links,.nav-right{display:none}
+  .hamburger{display:block}
+  .dest-grid{grid-template-columns:1fr}
+  .tour-grid{grid-template-columns:1fr}
+  .blog-grid{grid-template-columns:1fr}
+  .testimonial-grid{grid-template-columns:1fr}
+  .hero-search{flex-direction:column;border-radius:12px}
+  .hero-search input{padding:8px 0}
+  .footer-grid{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;gap:10px;text-align:center}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .form-row{grid-template-columns:1fr}
+  .modal-footer{flex-direction:column}
+  .filter-inner{flex-direction:column;align-items:stretch}
+  .article-body{padding:20px}
+  .article-cover-meta h1{font-size:1.2rem}
+  .dest-modal-body{padding:20px}
+  .dest-info-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar" id="navbar">
+  <div class="container nav-inner">
+    <a class="logo" onclick="showPage('home')">
+      <span class="logo-icon">✦</span>
+      <span>God<strong>Travel</strong></span>
+    </a>
+    <nav class="nav-links">
+      <a data-page="home" onclick="showPage('home')" class="active">Trang Chủ</a>
+      <a data-page="diem-den" onclick="showPage('diem-den')">Điểm Đến</a>
+      <a onclick="showPage('home');setTimeout(()=>document.getElementById('tours').scrollIntoView({behavior:'smooth'}),100)">Tour</a>
+      <a data-page="blog" onclick="showPage('blog')">Blog</a>
+      <a data-page="lien-he" onclick="showPage('lien-he')">Liên Hệ</a>
+    </nav>
+    <div class="nav-right">
+      <a href="tel:0123456789" class="phone-link">📞 0123 456 789</a>
+      <a class="btn-orange" onclick="openBookingModal()">Đặt Tour Ngay</a>
+    </div>
+    <button class="hamburger" onclick="toggleMenu()">☰</button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a onclick="showPage('home')">Trang Chủ</a>
+    <a onclick="showPage('diem-den')">Điểm Đến</a>
+    <a onclick="showPage('home');setTimeout(()=>document.getElementById('tours').scrollIntoView({behavior:'smooth'}),100)">Tour</a>
+    <a onclick="showPage('blog')">Blog</a>
+    <a onclick="showPage('lien-he')">Liên Hệ</a>
+  </div>
+</header>
+
+<!-- ============================================================ -->
+<!-- PAGE: HOME -->
+<!-- ============================================================ -->
+<div id="page-home" class="page-section">
+
+<section class="hero">
+  <div class="hero-bg">
+    <img src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=1600&q=80" alt="Du lịch" />
+    <div class="hero-overlay"></div>
+  </div>
+  <div class="hero-content container">
+    <p class="hero-sub">Khám phá Việt Nam và thế giới</p>
+    <h1>Hành Trình Của Bạn<br><span>Bắt Đầu Ở Đây</span></h1>
+    <p class="hero-desc">Khám phá hơn 200 điểm đến tuyệt vời, trải nghiệm ngàn lẻ một hành trình và tạo nên những kỷ niệm không thể quên cùng GodTravel.</p>
+    <div class="hero-search">
+      <div class="search-wrap">
+        <span class="search-icon">🔍</span>
+        <input type="text" placeholder="Tìm kiếm điểm đến..." id="heroSearch"/>
+      </div>
+      <select class="search-select" id="heroSelect">
+        <option>Tất cả</option><option>Biển đảo</option><option>Núi rừng</option><option>Di sản</option><option>Quốc tế</option>
+      </select>
+      <button class="btn-orange" onclick="heroSearch()">Tìm Kiếm</button>
+    </div>
+    <div class="hero-tags">
+      <span onclick="goDestTag('halong')">Hạ Long</span>
+      <span onclick="goDestTag('hoian')">Hội An</span>
+      <span onclick="goDestTag('sapa')">Sa Pa</span>
+      <span onclick="goDestTag('phuquoc')">Phú Quốc</span>
+      <span onclick="goDestTag('nhatban')">Nhật Bản</span>
+      <span onclick="goDestTag('bali')">Bali</span>
+    </div>
+  </div>
+  <div class="hero-rating">
+    <div class="stars">⭐⭐⭐⭐⭐</div>
+    <p><strong>4.9/5.0</strong></p>
+    <p class="small">Hơn 10,000 đánh giá</p>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="container stats-grid">
+    <div class="stat-item"><h3>5,000<span>+</span></h3><p>Tour Du Lịch</p></div>
+    <div class="stat-item"><h3>200<span>+</span></h3><p>Điểm Đến</p></div>
+    <div class="stat-item"><h3>50,000<span>+</span></h3><p>Khách Hàng Hài Lòng</p></div>
+    <div class="stat-item"><h3>15<span>+</span></h3><p>Giải Thưởng Ngành</p></div>
+  </div>
+</section>
+
+<section class="section destinations">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-label">ĐIỂM ĐẾN</p>
+      <h2>Điểm Đến Nổi Bật</h2>
+      <p class="section-desc">Khám phá những điểm đến đẹp nhất Việt Nam và thế giới được cộng đồng du khách yêu thích nhất.</p>
+    </div>
+    <div class="dest-grid">
+      <div class="dest-card" onclick="openDestDetail('halong')">
+        <div class="dest-img"><img src="images/halong.jpg" alt="Vịnh Hạ Long"/><span class="badge badge-blue">Biển đảo</span><span class="rating-badge">⭐ 4.9</span></div>
+        <div class="dest-body"><h4>Vịnh Hạ Long</h4><p class="dest-loc">📍 Quảng Ninh, Việt Nam</p><p>Kỳ quan thiên nhiên thế giới với hàng nghìn hòn đảo đá vôi và hang động huyền bí.</p><span class="link-arrow">Khám Phá →</span></div>
+      </div>
+      <div class="dest-card" onclick="openDestDetail('hoian')">
+        <div class="dest-img"><img src="images/hoian.jpg" alt="Hội An"/><span class="badge badge-green">Di sản</span><span class="rating-badge">⭐ 4.8</span></div>
+        <div class="dest-body"><h4>Hội An</h4><p class="dest-loc">📍 Quảng Nam, Việt Nam</p><p>Phố cổ thơ mộng với những chiếc đèn lồng rực rỡ và kiến trúc cổ kính trải qua nhiều thế kỷ.</p><span class="link-arrow">Khám Phá →</span></div>
+      </div>
+      <div class="dest-card" onclick="openDestDetail('sapa')">
+        <div class="dest-img"><img src="images/sapa.jpg" alt="Sa Pa"/><span class="badge badge-teal">Núi rừng</span><span class="rating-badge">⭐ 4.7</span></div>
+        <div class="dest-body"><h4>Sa Pa</h4><p class="dest-loc">📍 Lào Cai, Việt Nam</p><p>Thị trấn vùng cao với ruộng bậc thang xanh mướt, sương mù huyền ảo và văn hóa dân tộc.</p><span class="link-arrow">Khám Phá →</span></div>
+      </div>
+      <div class="dest-card" onclick="openDestDetail('danang')">
+        <div class="dest-img"><img src="images/danang.jpg" alt="Đà Nẵng"/><span class="badge badge-blue">Biển đảo</span><span class="rating-badge">⭐ 4.6</span></div>
+        <div class="dest-body"><h4>Đà Nẵng</h4><p class="dest-loc">📍 Đà Nẵng, Việt Nam</p><p>Thành phố năng động với bãi biển tuyệt đẹp, cầu Rồng độc đáo và ẩm thực phong phú.</p><span class="link-arrow">Khám Phá →</span></div>
+      </div>
+      <div class="dest-card" onclick="openDestDetail('phuquoc')">
+        <div class="dest-img"><img src="images/phuquoc.jpg" alt="Phú Quốc"/><span class="badge badge-blue">Biển đảo</span><span class="rating-badge">⭐ 4.8</span></div>
+        <div class="dest-body"><h4>Phú Quốc</h4><p class="dest-loc">📍 Kiên Giang, Việt Nam</p><p>Đảo ngọc với những bãi biển cát trắng, làn nước trong xanh và hoàng hôn tuyệt sắc.</p><span class="link-arrow">Khám Phá →</span></div>
+      </div>
+      <div class="dest-card" onclick="openDestDetail('bali')">
+        <div class="dest-img"><img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80" alt="Bali"/><span class="badge badge-orange">Quốc tế</span><span class="rating-badge">⭐ 4.9</span></div>
+        <div class="dest-body"><h4>Bali, Indonesia</h4><p class="dest-loc">📍 Bali, Indonesia</p><p>Hòn đảo thần thoại với ruộng bậc thang, đền thờ Hindu và những bãi biển thơ mộng.</p><span class="link-arrow">Khám Phá →</span></div>
+      </div>
+    </div>
+    <div class="center-btn"><a class="btn-outline" onclick="showPage('diem-den')">Xem Tất Cả Điểm Đến →</a></div>
+  </div>
+</section>
+
+<section class="section tours-section" id="tours">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-label">TOUR DU LỊCH</p>
+      <h2>Tour Được Yêu Thích</h2>
+      <a class="see-all-link" onclick="showPage('diem-den')">Xem tất cả →</a>
+    </div>
+    <div class="tour-grid">
+      <div class="tour-card">
+        <div class="tour-img"><img src="images/halong.jpg" alt="Ha Long"/><span class="tour-badge">🔥 Bán chạy</span></div>
+        <div class="tour-body">
+          <div class="tour-meta"><span>📍 Hạ Long</span><span>⭐ 4.9 (234)</span></div>
+          <h4>Tour Hạ Long Bay 3N2D</h4>
+          <p>Trải nghiệm vịnh Hạ Long trên du thuyền 5 sao với bữa ăn hải sản tươi ngon.</p>
+          <div class="tour-info"><span>⏱ 3 ngày 2 đêm</span><span>👥 Tối đa 20 người</span></div>
+          <div class="tour-footer">
+            <div class="price">2.500.000 <span>VNĐ/người</span></div>
+            <button class="btn-orange small" onclick="openBookingModal('Tour Hạ Long Bay 3N2D','Vịnh Hạ Long, Quảng Ninh','2.500.000 VND')">Đặt Tour</button>
+          </div>
+        </div>
+      </div>
+      <div class="tour-card">
+        <div class="tour-img"><img src="images/sapa.jpg" alt="Sa Pa"/><span class="tour-badge new">✨ Mới</span></div>
+        <div class="tour-body">
+          <div class="tour-meta"><span>📍 Sa Pa</span><span>⭐ 4.8 (189)</span></div>
+          <h4>Sa Pa Trekking 4N3D</h4>
+          <p>Chinh phục đỉnh Fansipan và khám phá văn hóa người H'Mông tại Sa Pa.</p>
+          <div class="tour-info"><span>⏱ 4 ngày 3 đêm</span><span>👥 Tối đa 15 người</span></div>
+          <div class="tour-footer">
+            <div class="price">3.200.000 <span>VNĐ/người</span></div>
+            <button class="btn-orange small" onclick="openBookingModal('Sa Pa Trekking 4N3D','Sa Pa, Lào Cai','3.200.000 VND')">Đặt Tour</button>
+          </div>
+        </div>
+      </div>
+      <div class="tour-card">
+        <div class="tour-img"><img src="images/nhatban.jpg" alt="Nhật Bản"/></div>
+        <div class="tour-body">
+          <div class="tour-meta"><span>📍 Tokyo & Kyoto</span><span>⭐ 4.9 (312)</span></div>
+          <h4>Tour Nhật Bản 6N5D</h4>
+          <p>Khám phá xứ hoa anh đào với hành trình Tokyo – Kyoto – Osaka đầy trải nghiệm.</p>
+          <div class="tour-info"><span>⏱ 6 ngày 5 đêm</span><span>👥 Tối đa 25 người</span></div>
+          <div class="tour-footer">
+            <div class="price">18.900.000 <span>VNĐ/người</span></div>
+            <button class="btn-orange small" onclick="openBookingModal('Tour Nhật Bản 6N5D','Tokyo & Kyoto, Nhật Bản','18.900.000 VND')">Đặt Tour</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="promo-banner">
+  <div class="promo-bg"><img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80" alt="promo"/><div class="promo-overlay"></div></div>
+  <div class="container promo-content">
+    <p class="promo-label">ƯU ĐÃI ĐẶC BIỆT</p>
+    <h2>Đăng Ký Ngay, Nhận Ngay <span>15% Giảm Giá</span></h2>
+    <p>Đăng ký thành viên ngay hôm nay để nhận 15% cho chuyến đi đầu tiên và nhiều ưu đãi độc quyền khác.</p>
+    <div class="promo-btns">
+      <a class="btn-orange" onclick="openBookingModal()">Đặt Tour Ngay</a>
+      <a class="btn-ghost" onclick="showPage('lien-he')">Tư Vấn Miễn Phí</a>
+    </div>
+  </div>
+</section>
+
+<section class="section blog-section">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-label">BLOG DU LỊCH</p>
+      <h2>Cẩm Nang Khám Phá</h2>
+      <p class="section-desc">Kinh nghiệm thực tế, mẹo tham quan và cảm hứng du lịch từ cộng đồng lữ khách.</p>
+    </div>
+    <div class="blog-grid">
+      <div class="blog-card" onclick="openBlogPost('halong')">
+        <div class="blog-img"><img src="images/halong2.jpg" alt="Blog 1"/><span class="blog-tag">Kinh nghiệm</span></div>
+        <div class="blog-body"><p class="blog-date">15 tháng 3, 2025</p><h4>10 Kinh Nghiệm Không Thể Bỏ Qua Khi Du Lịch Hạ Long</h4><p>Vịnh Hạ Long không chỉ đẹp trong ảnh mà còn đẹp hơn nhiều khi bạn thực sự đặt chân đến...</p><span class="read-more">Đọc Thêm →</span></div>
+      </div>
+      <div class="blog-card" onclick="openBlogPost('sapa')">
+        <div class="blog-img"><img src="images/sapa2.jpg" alt="Blog 2"/><span class="blog-tag">Review</span></div>
+        <div class="blog-body"><p class="blog-date">12 tháng 3, 2025</p><h4>Review Chi Tiết: Trekking Sa Pa 4 Ngày Cùng Người H'Mông</h4><p>Chuyến trekking qua các bản làng người H'Mông ở Sa Pa là một trong những trải nghiệm đáng nhớ nhất...</p><span class="read-more">Đọc Thêm →</span></div>
+      </div>
+      <div class="blog-card" onclick="openBlogPost('japan')">
+        <div class="blog-img"><img src="images/nhatban.jpg" alt="Blog 3"/><span class="blog-tag">Mẹo hay</span></div>
+        <div class="blog-body"><p class="blog-date">10 tháng 3, 2025</p><h4>Bí Quyết Du Lịch Nhật Bản Mùa Hoa Anh Đào Tiết Kiệm Nhất</h4><p>Đến Nhật Bản mùa anh đào không nhất thiết phải tốn nhiều tiền. Đây là những bí quyết giúp bạn...</p><span class="read-more">Đọc Thêm →</span></div>
+      </div>
+    </div>
+    <div class="center-btn"><a class="btn-outline" onclick="showPage('blog')">Xem Tất Cả Bài Viết →</a></div>
+  </div>
+</section>
+
+<section class="section testimonials">
+  <div class="container">
+    <div class="section-header">
+      <p class="section-label">KHÁCH HÀNG NÓI GÌ</p>
+      <h2>Họ Nói Gì Về Chúng Tôi</h2>
+      <p class="section-desc">Hơn 50,000 khách hàng đã tin tưởng GodTravel cho những chuyến đi đáng nhớ của họ.</p>
+    </div>
+    <div class="testimonial-grid">
+      <div class="testimonial-card"><div class="stars">⭐⭐⭐⭐⭐</div><p>"Chuyến đi Hạ Long vô cùng tuyệt vời! Dịch vụ chuyên nghiệp, hướng dẫn viên nhiệt tình. Chắc chắn sẽ quay lại lần sau."</p><div class="reviewer"><div class="avatar">TH</div><div><strong>Trần Thị Hoa</strong><span>Hà Nội</span></div></div></div>
+      <div class="testimonial-card"><div class="stars">⭐⭐⭐⭐⭐</div><p>"Tour Nhật Bản mùa anh đào thực sự là trải nghiệm trong mơ. Mọi thứ được sắp xếp hoàn hảo từ khách sạn đến ẩm thực."</p><div class="reviewer"><div class="avatar">NV</div><div><strong>Nguyễn Văn Nam</strong><span>TP. Hồ Chí Minh</span></div></div></div>
+      <div class="testimonial-card"><div class="stars">⭐⭐⭐⭐⭐</div><p>"GodTravel đã giúp gia đình tôi có một kỳ nghỉ Phú Quốc hoàn hảo. Trẻ em rất thích thú và bố mẹ thật sự được nghỉ ngơi."</p><div class="reviewer"><div class="avatar">LH</div><div><strong>Lê Thị Hương</strong><span>Đà Nẵng</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+</div><!-- end page-home -->
+
+<!-- ============================================================ -->
+<!-- PAGE: ĐIỂM ĐẾN -->
+<!-- ============================================================ -->
+<div id="page-diem-den" class="page-section" style="display:none">
+
+<section class="page-hero">
+  <div class="page-hero-bg"><img src="https://images.unsplash.com/photo-1559628233-100c798642d7?w=1600&q=80" alt="Destinations"/><div class="hero-overlay"></div></div>
+  <div class="page-hero-content container">
+    <p class="section-label" style="color:#e8a94d">KHÁM PHÁ</p>
+    <h1>Điểm Đến Nổi Bật</h1>
+    <p>Hơn 200 điểm đến tuyệt vời đang chờ bạn khám phá</p>
+  </div>
+</section>
+
+<section class="filter-bar">
+  <div class="container filter-inner">
+    <div class="search-filter"><span class="search-icon">🔍</span><input type="text" placeholder="Tìm kiếm điểm đến..." id="destSearch" oninput="filterDest()"/></div>
+    <div class="filter-cats">
+      <button class="cat-btn active" onclick="setCat(this,'all')">Tất Cả</button>
+      <button class="cat-btn" onclick="setCat(this,'bien-dao')">Biển đảo</button>
+      <button class="cat-btn" onclick="setCat(this,'nui-rung')">Núi rừng</button>
+      <button class="cat-btn" onclick="setCat(this,'di-san')">Di sản</button>
+      <button class="cat-btn" onclick="setCat(this,'quoc-te')">Quốc tế</button>
+    </div>
+  </div>
+</section>
+
+<div class="container" style="padding-top:20px">
+  <p class="results-count" id="resultsCount">Tìm thấy <strong>8</strong> điểm đến</p>
+</div>
+
+<section class="section" style="padding-top:10px">
+  <div class="container">
+    <div class="dest-grid dest-grid-4" id="destGrid">
+      <div class="dest-card" data-cat="bien-dao" data-name="vịnh hạ long" onclick="openDestDetail('halong')">
+        <div class="dest-img"><img src="images/halong.jpg" alt="Vịnh Hạ Long"/><span class="badge badge-blue">Biển đảo</span><span class="rating-badge">⭐ 4.9</span></div>
+        <div class="dest-body"><h4>Vịnh Hạ Long</h4><p class="dest-loc">📍 Quảng Ninh</p><p>Kỳ quan thiên nhiên thế giới với hàng nghìn hòn đảo đá vôi và hang động huyền bí.</p><div class="dest-footer"><span class="tour-count">24 tour</span><span class="link-arrow">Xem Thêm →</span></div></div>
+      </div>
+      <div class="dest-card" data-cat="di-san" data-name="hội an" onclick="openDestDetail('hoian')">
+        <div class="dest-img"><img src="images/hoian.jpg" alt="Hội An"/><span class="badge badge-green">Di sản</span><span class="rating-badge">⭐ 4.8</span></div>
+        <div class="dest-body"><h4>Hội An</h4><p class="dest-loc">📍 Quảng Nam</p><p>Phố cổ thơ mộng với những chiếc đèn lồng rực rỡ và kiến trúc cổ kính trải qua nhiều thế kỷ.</p><div class="dest-footer"><span class="tour-count">18 tour</span><span class="link-arrow">Xem Thêm →</span></div></div>
+      </div>
+      <div class="dest-card" data-cat="nui-rung" data-name="sa pa" onclick="openDestDetail('sapa')">
+        <div class="dest-img"><img src="images/sapa.jpg" alt="Sa Pa"/><span class="badge badge-teal">Núi rừng</span><span class="rating-badge">⭐ 4.7</span></div>
+        <div class="dest-body"><h4>Sa Pa</h4><p class="dest-loc">📍 Lào Cai</p><p>Thị trấn vùng cao với ruộng bậc thang xanh mướt, sương mù huyền ảo và văn hóa dân tộc.</p><div class="dest-footer"><span class="tour-count">15 tour</span><span class="link-arrow">Xem Thêm →</span></div></div>
+      </div>
+      <div class="dest-card" data-cat="bien-dao" data-name="đà nẵng" onclick="openDestDetail('danang')">
+        <div class="dest-img"><img src="images/danang.jpg" alt="Đà Nẵng"/><span class="badge badge-blue">Biển đảo</span><span class="rating-badge">⭐ 4.6</span></div>
+        <div class="dest-body"><h4>Đà Nẵng</h4><p class="dest-loc">📍 Đà Nẵng</p><p>Thành phố năng động với bãi biển tuyệt đẹp, cầu Rồng độc đáo và ẩm thực phong phú.</p><div class="dest-footer"><span class="tour-count">20 tour</span><span class="link-arrow">Xem Thêm →</span></div></div>
+      </div>
+      <div class="dest-card" data-cat="bien-dao" data-name="phú quốc" onclick="openDestDetail('phuquoc')">
+        <div class="dest-img"><img src="images/phuquoc.jpg" alt="Phú Quốc"/><span class="badge badge-blue">Biển đảo</span><span class="rating-badge">⭐ 4.8</span></div>
+        <div class="dest-body"><h4>Phú Quốc</h4><p class="dest-loc">📍 Kiên Giang</p><p>Đảo ngọc với những bãi biển cát trắng, làn nước trong xanh và hoàng hôn rực rỡ.</p><div class="dest-footer"><span class="tour-count">22 tour</span><span class="link-arrow">Xem Thêm →</span></div></div>
+      </div>
+      <div class="dest-card" data-cat="quoc-te" data-name="bali" onclick="openDestDetail('bali')">
+        <div class="dest-img"><img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80" alt="Bali"/><span class="badge badge-orange">Quốc tế</span><span class="rating-badge">⭐ 4.9</span></div>
+        <div class="dest-body"><h4>Bali, Indonesia</h4><p class="dest-loc">📍 Bali</p><p>Hòn đảo thần thoại với ruộng bậc thang, đền thờ Hindu và những bãi biển thơ mộng.</p><div class="dest-footer"><span class="tour-count">12 tour</span><span class="link-arrow">Xem Thêm →</span></div></div>
+      </div>
+      <div class="dest-card" data-cat="quoc-te" data-name="nhật bản" onclick="openDestDetail('nhatban')">
+        <div class="dest-img"><img src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=600&q=80" alt="Nhật Bản"/><span class="badge badge-orange">Quốc tế</span><span class="rating-badge">⭐ 4.9</span></div>
+        <div class="dest-body"><h4>Nhật Bản</h4><p class="dest-loc">📍 Tokyo & Kyoto</p><p>Xứ hoa anh đào với sự kết hợp hoàn hảo giữa truyền thống và hiện đại.</p><div class="dest-footer"><span class="tour-count">8 tour</span><span class="link-arrow">Xem Thêm →</span></div></div>
+      </div>
+      <div class="dest-card" data-cat="di-san" data-name="ninh bình" onclick="openDestDetail('ninhbinh')">
+        <div class="dest-img"><img src="images/ninhbinh.jpg" alt="Ninh Bình"/><span class="badge badge-green">Di sản</span><span class="rating-badge">⭐ 4.7</span></div>
+        <div class="dest-body"><h4>Ninh Bình</h4><p class="dest-loc">📍 Ninh Bình</p><p>Vịnh Hạ Long trên cạn với những núi đá vôi hùng vĩ, hang động và dòng sông êm ả.</p><div class="dest-footer"><span class="tour-count">16 tour</span><span class="link-arrow">Xem Thêm →</span></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- end page-diem-den -->
+
+<!-- ============================================================ -->
+<!-- PAGE: BLOG -->
+<!-- ============================================================ -->
+<div id="page-blog" class="page-section" style="display:none">
+
+<section class="page-hero">
+  <div class="page-hero-bg"><img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1600&q=80" alt="Blog"/><div class="hero-overlay"></div></div>
+  <div class="page-hero-content container">
+    <h1>Blog Du Lịch</h1>
+    <p>Kinh nghiệm thực tế, mẹo tiết kiệm và cảm hứng du lịch từ cộng đồng lữ khách</p>
+  </div>
+</section>
+
+<section class="filter-bar">
+  <div class="container filter-inner">
+    <div class="search-filter"><span class="search-icon">🔍</span><input type="text" placeholder="Tìm kiếm bài viết..." id="blogSearch" oninput="filterBlog()"/></div>
+    <div class="filter-cats">
+      <button class="cat-btn active" onclick="setBlogCat(this,'all')">Tất Cả</button>
+      <button class="cat-btn" onclick="setBlogCat(this,'kinh-nghiem')">Kinh Nghiệm</button>
+      <button class="cat-btn" onclick="setBlogCat(this,'diem-den')">Điểm Đến</button>
+      <button class="cat-btn" onclick="setBlogCat(this,'meo-hay')">Mẹo Hay</button>
+      <button class="cat-btn" onclick="setBlogCat(this,'review')">Review</button>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="padding-bottom:0">
+  <div class="container">
+    <div class="featured-post" onclick="openBlogPost('halong')">
+      <div class="featured-img"><img src="images/halong2.jpg" alt="Featured"/><span class="featured-label">BÀI VIẾT NỔI BẬT</span></div>
+      <div class="featured-content">
+        <span class="blog-tag inline">Kinh nghiệm</span>
+        <h2>10 Kinh Nghiệm Không Thể Bỏ Qua Khi Du Lịch Hạ Long</h2>
+        <p>Vịnh Hạ Long không chỉ đẹp trong ảnh mà còn đẹp hơn nhiều khi bạn thực sự đặt chân đến. Hãy cùng khám phá những bí quyết để có chuyến đi hoàn hảo nhất.</p>
+        <div class="blog-meta"><div class="reviewer"><div class="avatar">PĐ</div><div><strong>Phùng Thanh Độ</strong><span>15 tháng 3, 2025 • 8 phút đọc</span></div></div></div>
+        <div class="blog-tags-row"><span>🏖 Hạ Long</span><span>🚢 Du lịch biển</span><span>💡 Mẹo hay</span></div>
+        <span class="link-arrow">Đọc Bài Viết →</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="blog-grid blog-grid-3" id="blogGrid">
+      <div class="blog-card" data-cat="review" onclick="openBlogPost('sapa')">
+        <div class="blog-img"><img src="images/sapa2.jpg" alt="Sa Pa"/><span class="blog-tag">Review</span></div>
+        <div class="blog-body"><div class="blog-author-row"><div class="avatar sm">TN</div><span>Trần Hoàng Hải Nam</span><span class="dot">•</span><span>12 phút</span></div><h4>Review Chi Tiết: Trekking Sa Pa 4 Ngày Cùng Người H'Mông</h4><p>Chuyến trekking qua các bản làng người H'Mông ở Sa Pa là một trong những trải nghiệm đáng nhớ trong cuộc đời...</p><p class="blog-date">12 tháng 3, 2025</p><span class="read-more">Đọc Thêm →</span></div>
+      </div>
+      <div class="blog-card" data-cat="meo-hay" onclick="openBlogPost('japan')">
+        <div class="blog-img"><img src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=500&q=80" alt="Nhật Bản"/><span class="blog-tag">Mẹo Hay</span></div>
+        <div class="blog-body"><div class="blog-author-row"><div class="avatar sm">ĐH</div><span>Đỗ Minh Hưng</span><span class="dot">•</span><span>10 phút</span></div><h4>Bí Quyết Du Lịch Nhật Bản Mùa Hoa Anh Đào Tiết Kiệm Nhất</h4><p>Đến Nhật Bản mùa anh đào không nhất thiết phải tốn nhiều tiền. Đây là những bí quyết giúp bạn tiết kiệm...</p><p class="blog-date">10 tháng 3, 2025</p><span class="read-more">Đọc Thêm →</span></div>
+      </div>
+      <div class="blog-card" data-cat="diem-den" onclick="openBlogPost('hoian')">
+        <div class="blog-img"><img src="images/hoian2.jpg" alt="Hội An"/><span class="blog-tag">Điểm Đến</span></div>
+        <div class="blog-body"><div class="blog-author-row"><div class="avatar sm">PK</div><span>Phan Ngọc Khánh</span><span class="dot">•</span><span>7 phút</span></div><h4>Hội An – Thành Phố Của Ánh Đèn Lồng Và Ký Ức</h4><p>Không có nơi nào ở Việt Nam lại có thể chạm đến trái tim du khách như Hội An. Mỗi con hẻm, mỗi chiếc đèn lồng...</p><p class="blog-date">5 tháng 3, 2025</p><span class="read-more">Đọc Thêm →</span></div>
+      </div>
+      <div class="blog-card" data-cat="diem-den" onclick="openBlogPost('phuquoc')">
+        <div class="blog-img"><img src="images/phuquoc2.jpg" alt="Phú Quốc"/><span class="blog-tag">Điểm Đến</span></div>
+        <div class="blog-body"><div class="blog-author-row"><div class="avatar sm">NL</div><span>Nguyễn Lê Hà Linh</span><span class="dot">•</span><span>9 phút</span></div><h4>Phú Quốc: Từ Hòn Đảo Ngủ Quên Đến Thiên Đường Nghỉ Dưỡng</h4><p>Chỉ trong vòng 10 năm, Phú Quốc đã lột xác hoàn toàn. Nhưng liệu sự phát triển chóng đó có còn giữ lại...</p><p class="blog-date">28 tháng 2, 2025</p><span class="read-more">Đọc Thêm →</span></div>
+      </div>
+      <div class="blog-card" data-cat="kinh-nghiem" onclick="openBlogPost('hanoi')">
+        <div class="blog-img"><img src="https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=500&q=80" alt="Hà Nội"/><span class="blog-tag">Kinh nghiệm</span></div>
+        <div class="blog-body"><div class="blog-author-row"><div class="avatar sm">NT</div><span>Nguyễn Hưng Thịnh</span><span class="dot">•</span><span>11 phút</span></div><h4>Ẩm Thực Đường Phố Hà Nội: Hành Trình 36 Phố Phường</h4><p>Bún chả, phở, bánh cuốn, nem rán... Ẩm thực Hà Nội là một bản giao hưởng phong phú mà bạn cần cả...</p><p class="blog-date">22 tháng 2, 2025</p><span class="read-more">Đọc Thêm →</span></div>
+      </div>
+      <div class="blog-card" data-cat="meo-hay" onclick="openBlogPost('bali')">
+        <div class="blog-img"><img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=500&q=80" alt="Bali"/><span class="blog-tag">Mẹo Hay</span></div>
+        <div class="blog-body"><div class="blog-author-row"><div class="avatar sm">TC</div><span>Trịnh Minh Châu</span><span class="dot">•</span><span>8 phút</span></div><h4>Checklist Đi Bali Không Bao Giờ Hối Hận</h4><p>Bali luôn là điểm đến trong mơ của nhiều du khách. Nhưng để chuyến đi thực sự hoàn hảo, bạn cần...</p><p class="blog-date">18 tháng 2, 2025</p><span class="read-more">Đọc Thêm →</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- end page-blog -->
+
+<!-- ============================================================ -->
+<!-- PAGE: LIÊN HỆ -->
+<!-- ============================================================ -->
+<div id="page-lien-he" class="page-section" style="display:none">
+
+<section class="page-hero">
+  <div class="page-hero-bg"><img src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=1600&q=80" alt="Contact"/><div class="hero-overlay"></div></div>
+  <div class="page-hero-content container">
+    <h1>Liên Hệ Với Chúng Tôi</h1>
+    <p>Đội ngũ tư vấn luôn sẵn sàng giúp bạn lên kế hoạch cho chuyến đi hoàn hảo</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container contact-layout">
+    <div class="contact-form-card">
+      <p class="section-label">GỬI TIN NHẮN</p>
+      <h2 style="font-family:var(--font-display);font-size:1.7rem;margin-bottom:8px">Chúng Tôi Lắng Nghe Bạn</h2>
+      <p style="color:#666;margin-bottom:24px">Hãy để lại thông tin và chúng tôi sẽ phản hồi trong vòng 24 giờ làm việc.</p>
+      <div class="contact-form">
+        <div class="form-row">
+          <div class="form-group"><label>Họ và tên *</label><input type="text" id="cfName" placeholder="Nguyễn Văn A"/></div>
+          <div class="form-group"><label>Số Điện Thoại *</label><input type="tel" id="cfPhone" placeholder="0123 456 789"/></div>
+        </div>
+        <div class="form-group"><label>Email *</label><input type="email" id="cfEmail" placeholder="email@example.com"/></div>
+        <div class="form-group"><label>Chủ Đề</label>
+          <select id="cfSubject"><option value="">-- Chọn chủ đề --</option><option>Tư vấn Tour</option><option>Đặt Tour</option><option>Khiếu nại / Góp ý</option><option>Hợp tác kinh doanh</option><option>Khác</option></select>
+        </div>
+        <div class="form-group"><label>Nội Dung *</label><textarea id="cfMsg" rows="5" placeholder="Hãy cho chúng tôi biết bạn cần gì..."></textarea></div>
+        <button class="btn-teal full-width" onclick="submitContactForm()">📨 Gửi Tin Nhắn</button>
+        <div id="formSuccess" class="form-success" style="display:none">✅ Cảm ơn bạn! Chúng tôi sẽ phản hồi sớm nhất có thể.</div>
+      </div>
+    </div>
+
+    <div class="contact-info-card">
+      <p class="section-label">THÔNG TIN</p>
+      <h2 style="font-family:var(--font-display);font-size:1.7rem;margin-bottom:8px">Kết Nối Với Chúng Tôi</h2>
+      <p style="color:#666;margin-bottom:24px">Nhiều cách để liên hệ với đội ngũ tư vấn du lịch của GodTravel.</p>
+      <div class="info-items">
+        <div class="info-item"><div class="info-icon">📍</div><div><strong>Địa Chỉ</strong><p>Số 13 Ba Đình, Hà Nội, Việt Nam</p></div></div>
+        <div class="info-item"><div class="info-icon">📞</div><div><strong>Điện Thoại</strong><p>0123 456 789</p></div></div>
+        <div class="info-item"><div class="info-icon">✉️</div><div><strong>Email</strong><p>godtravelcamonquykhach@gmail.com</p></div></div>
+        <div class="info-item"><div class="info-icon">🕐</div><div><strong>Giờ Làm Việc</strong><p>Thứ 2 – Thứ 6: 8:00 – 18:00<br>Thứ 7 – CN: 8:00 – 12:00</p></div></div>
+      </div>
+      <div class="social-section">
+        <strong>Theo Dõi Chúng Tôi</strong>
+        <div class="social-row">
+          <a href="#" class="social-btn fb">Facebook</a>
+          <a href="#" class="social-btn ig">Instagram</a>
+          <a href="#" class="social-btn yt">YouTube</a>
+          <a href="#" class="social-btn tk">TikTok</a>
+        </div>
+      </div>
+      <div class="map-placeholder">
+        <div class="map-inner">
+          <div class="map-pin">📍</div>
+          <p>Số 120 Yên Lãng, Đống Đa, Hà Nội</p>
+          <a href="https://maps.app.goo.gl/mWmqDRwciHBbULhn8" target="_blank" class="map-link">Xem trên Google Maps →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div><!-- end page-lien-he -->
+
+<!-- ============================================================ -->
+<!-- FOOTER (luôn hiển thị) -->
+<!-- ============================================================ -->
+<footer class="footer" id="mainFooter">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a class="logo logo-white" onclick="showPage('home')"><span class="logo-icon">✦</span><span>God<strong>Travel</strong></span></a>
+      <p>Khám phá vẻ đẹp Việt Nam và thế giới cùng GodTravel — đối tác du lịch tin cậy của hàng nghìn gia đình Việt.</p>
+      <div class="social-links"><a href="#">Facebook</a><a href="#">Instagram</a><a href="#">YouTube</a><a href="#">TikTok</a></div>
+    </div>
+    <div class="footer-col">
+      <h5>Điều Hướng</h5>
+      <a onclick="showPage('home')">→ Trang Chủ</a>
+      <a onclick="showPage('diem-den')">→ Điểm Đến</a>
+      <a onclick="showPage('home');setTimeout(()=>document.getElementById('tours').scrollIntoView({behavior:'smooth'}),100)">→ Tour Du Lịch</a>
+      <a onclick="showPage('blog')">→ Blog</a>
+      <a onclick="showPage('lien-he')">→ Liên Hệ</a>
+      <h5 style="margin-top:20px">Tour Nổi Bật</h5>
+      <a onclick="openBookingModal('Tour Hạ Long Bay 3N2D','Vịnh Hạ Long, Quảng Ninh','2.500.000 VND')">→ Tour Hạ Long Bay</a>
+      <a onclick="openBookingModal('Sa Pa Trekking 4N3D','Sa Pa, Lào Cai','3.200.000 VND')">→ Sa Pa Trekking</a>
+      <a onclick="openBookingModal('Tour Hội An – Đà Nẵng 4N3D','Quảng Nam – Đà Nẵng','4.500.000 VND')">→ Hội An – Đà Nẵng</a>
+      <a onclick="openBookingModal('Phú Quốc Nghỉ Dưỡng 4N3D','Phú Quốc, Kiên Giang','5.200.000 VND')">→ Phú Quốc Nghỉ Dưỡng</a>
+      <a onclick="openBookingModal('Tour Nhật Bản 6N5D','Tokyo & Kyoto, Nhật Bản','18.900.000 VND')">→ Tour Nhật Bản</a>
+    </div>
+    <div class="footer-col">
+      <h5>Liên Hệ</h5>
+      <p>📍 Số 13 Ba Đình, Hà Nội</p>
+      <p>📞 0123 456 789</p>
+      <p>✉️ godtravelcamonquykhach@gmail.com</p>
+      <p>🕐 Thứ 2 – Thứ 6: 8:00 – 18:00<br>Thứ 7 – CN: 8:00 – 12:00</p>
+    </div>
+    <div class="footer-col">
+      <h5>Nhận Tin Ưu Đãi</h5>
+      <p>Đăng ký để nhận những ưu đãi tour độc quyền và cảm hứng du lịch mỗi tuần.</p>
+      <div class="newsletter">
+        <input type="email" placeholder="Nhập email của bạn..."/>
+        <button class="btn-orange" onclick="alert('✅ Đăng ký nhận tin thành công!')">Đăng Ký Nhận Tin</button>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom container">
+    <p>© 2025 GodTravel. Tất cả quyền được bảo lưu.</p>
+    <div><a href="#">Chính sách bảo mật</a><a href="#">Điều khoản sử dụng</a></div>
+  </div>
+</footer>
+
+<!-- ============================================================ -->
+<!-- BOOKING MODAL -->
+<!-- ============================================================ -->
+<div class="modal-overlay" id="bookingModal" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <div class="modal-header"><h3>Đặt Tour</h3><button class="modal-close" onclick="closeBookingModal()">✕</button></div>
+    <div class="tour-summary" id="tourSummary">
+      <div class="tour-thumb"><img src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=100&q=80" alt="tour" id="modalTourImg"/></div>
+      <div><h4 id="modalTourName">Tour Hạ Long Bay 3N2D</h4><p id="modalTourLoc">📍 Vịnh Hạ Long, Quảng Ninh</p><p class="modal-price" id="modalTourPrice">2.500.000 VND</p></div>
+    </div>
+    <div class="modal-body">
+      <div class="form-row">
+        <div class="form-group"><label>Họ và tên *</label><input type="text" id="bName" placeholder="Nguyễn Văn A"/></div>
+        <div class="form-group"><label>Số điện thoại *</label><input type="tel" id="bPhone" placeholder="0123 456 789"/></div>
+      </div>
+      <div class="form-group"><label>Email *</label><input type="email" id="bEmail" placeholder="email@example.com"/></div>
+      <div class="form-row">
+        <div class="form-group"><label>Ngày khởi hành</label><input type="date" id="bDate"/></div>
+        <div class="form-group"><label>Số người</label><select id="bPeople"><option>1 người</option><option selected>2 người</option><option>3 người</option><option>4 người</option><option>5+ người</option></select></div>
+      </div>
+      <div class="form-group"><label>Ghi chú thêm</label><textarea placeholder="Yêu cầu đặc biệt, câu hỏi..."></textarea></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-outline" onclick="closeBookingModal()">Hủy</button>
+      <button class="btn-orange" onclick="confirmBooking()">Xác Nhận Đặt Tour</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- BLOG ARTICLE MODAL -->
+<!-- ============================================================ -->
+<div class="article-modal" id="articleModal" onclick="closeArticleOutside(event)">
+  <div class="article-container" id="articleContainer">
+    <div class="article-cover">
+      <img id="articleCoverImg" src="" alt=""/>
+      <div class="article-cover-overlay"></div>
+      <button class="article-close-btn" onclick="closeArticleModal()">✕</button>
+      <div class="article-cover-meta">
+        <span class="blog-tag inline" id="articleTag"></span>
+        <h1 id="articleTitle"></h1>
+        <div class="article-byline" id="articleByline"></div>
+      </div>
+    </div>
+    <div class="article-body" id="articleBody"></div>
+    <div class="article-footer" id="articleFooter"></div>
+  </div>
+</div>
+
+<!-- ============================================================ -->
+<!-- DESTINATION DETAIL MODAL -->
+<!-- ============================================================ -->
+<div class="dest-modal" id="destModal" onclick="closeDestOutside(event)">
+  <div class="dest-container" id="destContainer">
+    <div class="dest-cover">
+      <img id="destCoverImg" src="" alt=""/>
+      <div class="dest-cover-overlay"></div>
+      <button class="article-close-btn" onclick="closeDestModal()">✕</button>
+      <div class="dest-cover-meta">
+        <h1 id="destTitle"></h1>
+        <p id="destSubtitle"></p>
+      </div>
+    </div>
+    <div class="dest-modal-body" id="destModalBody"></div>
+    <div class="dest-modal-footer">
+      <button class="btn-outline" onclick="closeDestModal()">Đóng</button>
+      <button class="btn-orange" id="destBookBtn" onclick="">Đặt Tour Ngay</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ===================== NAVIGATION =====================
+function showPage(name) {
+  document.querySelectorAll('.page-section').forEach(s => s.style.display = 'none');
+  const el = document.getElementById('page-' + name);
+  if (el) el.style.display = 'block';
+  window.scrollTo({top: 0, behavior: 'smooth'});
+  document.querySelectorAll('.nav-links a[data-page]').forEach(a => {
+    a.classList.toggle('active', a.dataset.page === name);
+  });
+  const mm = document.getElementById('mobileMenu');
+  if (mm) mm.classList.remove('open');
+  // Re-trigger scroll reveal
+  setTimeout(initReveal, 50);
+}
+
+function heroSearch() {
+  const q = document.getElementById('heroSearch').value;
+  showPage('diem-den');
+  setTimeout(() => {
+    const el = document.getElementById('destSearch');
+    if (el) { el.value = q; filterDest(); }
+  }, 100);
+}
+
+function goDestTag(id) {
+  showPage('diem-den');
+  setTimeout(() => openDestDetail(id), 200);
+}
+
+// ===================== NAVBAR SCROLL =====================
+window.addEventListener('scroll', () => {
+  const nav = document.getElementById('navbar');
+  if (nav) nav.classList.toggle('scrolled', window.scrollY > 30);
+});
+
+function toggleMenu() {
+  const menu = document.getElementById('mobileMenu');
+  if (menu) menu.classList.toggle('open');
+}
+
+// ===================== BOOKING MODAL =====================
+function openBookingModal(name, loc, price) {
+  const modal = document.getElementById('bookingModal');
+  if (!modal) return;
+  if (name) document.getElementById('modalTourName').textContent = name;
+  if (loc) document.getElementById('modalTourLoc').textContent = '📍 ' + loc;
+  if (price) document.getElementById('modalTourPrice').textContent = price;
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeBookingModal() {
+  const modal = document.getElementById('bookingModal');
+  if (modal) modal.classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeModalOutside(e) {
+  if (e.target.id === 'bookingModal') closeBookingModal();
+}
+function confirmBooking() {
+  const name = document.getElementById('bName').value.trim();
+  const phone = document.getElementById('bPhone').value.trim();
+  const email = document.getElementById('bEmail').value.trim();
+  if (!name || !phone || !email) { alert('Vui lòng điền đầy đủ thông tin bắt buộc!'); return; }
+  closeBookingModal();
+  setTimeout(() => alert('✅ Đặt tour thành công!\nChúng tôi sẽ liên hệ với bạn trong vòng 24 giờ.'), 200);
+}
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { closeBookingModal(); closeArticleModal(); closeDestModal(); } });
+
+// ===================== CONTACT FORM =====================
+function submitContactForm() {
+  const name = document.getElementById('cfName').value.trim();
+  const phone = document.getElementById('cfPhone').value.trim();
+  const email = document.getElementById('cfEmail').value.trim();
+  const msg = document.getElementById('cfMsg').value.trim();
+  if (!name || !phone || !email || !msg) { alert('Vui lòng điền đầy đủ thông tin bắt buộc (*)'); return; }
+  document.getElementById('formSuccess').style.display = 'block';
+  document.getElementById('cfName').value = '';
+  document.getElementById('cfPhone').value = '';
+  document.getElementById('cfEmail').value = '';
+  document.getElementById('cfMsg').value = '';
+}
+
+// ===================== DEST FILTER =====================
+let currentCat = 'all';
+function setCat(btn, cat) {
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentCat = cat;
+  filterDest();
+}
+function filterDest() {
+  const q = (document.getElementById('destSearch')?.value || '').toLowerCase();
+  const cards = document.querySelectorAll('#destGrid .dest-card');
+  let count = 0;
+  cards.forEach(card => {
+    const name = card.dataset.name || '';
+    const cat = card.dataset.cat;
+    const matchCat = currentCat === 'all' || cat === currentCat;
+    const matchQ = name.includes(q);
+    if (matchCat && matchQ) { card.style.display = ''; count++; }
+    else card.style.display = 'none';
+  });
+  const rc = document.getElementById('resultsCount');
+  if (rc) rc.innerHTML = `Tìm thấy <strong>${count}</strong> điểm đến`;
+}
+
+// ===================== BLOG FILTER =====================
+let blogCat = 'all';
+function setBlogCat(btn, cat) {
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  blogCat = cat;
+  filterBlog();
+}
+function filterBlog() {
+  const q = (document.getElementById('blogSearch')?.value || '').toLowerCase();
+  document.querySelectorAll('#blogGrid .blog-card').forEach(card => {
+    const cat = card.dataset.cat;
+    const text = card.innerText.toLowerCase();
+    const matchCat = blogCat === 'all' || cat === blogCat;
+    const matchQ = !q || text.includes(q);
+    card.style.display = (matchCat && matchQ) ? '' : 'none';
+  });
+}
+
+// ===================== SCROLL REVEAL =====================
+function initReveal() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.page-section:not([style*="display:none"]) .dest-card, .page-section:not([style*="display:none"]) .tour-card, .page-section:not([style*="display:none"]) .blog-card, .page-section:not([style*="display:none"]) .testimonial-card, .page-section:not([style*="display:none"]) .stat-item').forEach((el, i) => {
+    if (!el._revealed) {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(24px)';
+      el.style.transition = `opacity 0.5s ease ${i*0.07}s, transform 0.5s ease ${i*0.07}s`;
+      observer.observe(el);
+      el._revealed = true;
+    }
+  });
+}
+document.addEventListener('DOMContentLoaded', initReveal);
+
+// ===================== BLOG POSTS DATA =====================
+const BLOG_POSTS = {
+  halong: {
+    title: '10 Kinh Nghiệm Không Thể Bỏ Qua Khi Du Lịch Hạ Long',
+    author: 'Phùng Thanh Độ', authorInit: 'PĐ',
+    date: '15 tháng 3, 2025', readTime: '8 phút đọc',
+    tag: 'Kinh nghiệm',
+    img: 'images/halong2.jpg',
+    tags: ['🏖 Hạ Long','🚢 Du lịch biển','💡 Mẹo hay'],
+    body: `
+      <p>Vịnh Hạ Long — Kỳ quan thiên nhiên thế giới được UNESCO công nhận hai lần — là giấc mơ của hàng triệu du khách. Nhưng để có một chuyến đi thực sự đáng nhớ, bạn cần biết những điều mà các "phượt thủ" lão luyện chưa chắc đã chia sẻ hết.</p>
+      <h2>1. Đặt tour du thuyền sớm ít nhất 2 tuần</h2>
+      <p>Những chiếc du thuyền tốt nhất ở Hạ Long thường hết chỗ nhanh chóng, đặc biệt vào mùa cao điểm (tháng 3–4 và tháng 9–10). Hãy đặt trước ít nhất 2 tuần để có mức giá tốt và lựa chọn phòng cabin ưng ý nhất. Tránh mua tour tại bến vì thường đắt và chất lượng không được kiểm soát.</p>
+      <h2>2. Chọn tour 2 ngày 1 đêm hoặc 3 ngày 2 đêm</h2>
+      <p>Tour 1 ngày không đủ để cảm nhận trọn vẹn vẻ đẹp của vịnh. Hãy chọn tour ngủ đêm trên thuyền để được trải nghiệm bình minh hoặc hoàng hôn trên vịnh — khung cảnh mà không một bức ảnh nào có thể lột tả hết.</p>
+      <div class="tip-box"><strong>💡 Mẹo Pro:</strong> Cabin ở mũi thuyền (tầng trên) thường có tầm nhìn đẹp nhất nhưng cũng rung nhiều nhất khi thuyền chạy. Nếu bạn dễ say sóng, hãy chọn cabin ở giữa thuyền.</div>
+      <h2>3. Dậy sớm đón bình minh</h2>
+      <p>Cài báo thức lúc 5h30. Không khí buổi sáng sớm trên vịnh Hạ Long vô cùng trong lành, sương mù nhẹ bao phủ các đảo đá tạo ra khung cảnh huyền ảo đến mức bạn sẽ tự hỏi mình đang đứng trong tranh hay ngoài đời thực. Đây cũng là thời điểm hiếm hoi gần như không có thuyền khác xung quanh.</p>
+      <h2>4. Kayaking — hoạt động không thể bỏ qua</h2>
+      <p>Hầu hết các tour đều bao gồm kayaking miễn phí hoặc tính phí thêm nhỏ. Đây là cách duy nhất để bạn chui vào những hang động thấp, khám phá đầm phá ẩn mình sau các vách đá. Động Luồn và Hang Trống là hai điểm kayaking đẹp nhất không nên bỏ qua.</p>
+      <h2>5. Thời điểm lý tưởng để đến Hạ Long</h2>
+      <p>Tháng 9 đến tháng 11 là thời gian vàng: trời trong xanh, ít mưa, biển êm. Tháng 3–4 cũng tuyệt vời. Tránh tháng 7–8 vì đây là mùa bão, nhiều tour bị hủy đột xuất.</p>
+      <h2>6. Mặc cả hải sản tại chợ nổi</h2>
+      <p>Nếu tour của bạn ghé qua chợ nổi hoặc làng chài, bạn có thể mua hải sản tươi sống với giá rất hợp lý và nhờ bếp tàu chế biến với phí nhỏ. Tôm hùm baby, sò điệp nướng mỡ hành, mực chiên nước mắm — tất cả đều ngon hơn bất kỳ nhà hàng nào ở đất liền.</p>
+      <h2>7. Mang theo thuốc chống say sóng</h2>
+      <p>Dù vịnh Hạ Long có sóng nhỏ, nhưng vào mùa đông hoặc khi có gió, biển có thể khá dữ. Uống thuốc say sóng trước 30 phút khi lên tàu nếu bạn dễ bị say. Cinnarizine hoặc Dramamine là hai loại phổ biến và hiệu quả.</p>
+      <div class="tip-box"><strong>💡 Mẹo ngừa say sóng:</strong> Ngồi ở giữa tàu, nhìn ra đường chân trời, tránh đọc sách và tránh uống rượu bia trước khi ra biển.</div>
+      <h2>8. Tham quan hang động đúng giờ</h2>
+      <p>Hang Sửng Sốt, Hang Thiên Cung, Hang Đầu Gỗ đẹp nhất vào buổi sáng khi ánh sáng tự nhiên chiếu vào. Hạn chế đi vào buổi chiều khi ánh nắng không còn và đám đông tour đã tập trung dày đặc.</p>
+      <h2>9. Đồ uống và snack trên tàu rất đắt</h2>
+      <p>Một chai nước trên tàu có thể đắt gấp 3–5 lần ngoài đất liền. Hãy mang theo nước lọc và đồ ăn vặt từ bờ. Nhiều tour không cho phép mang bia/rượu riêng lên tàu — hãy hỏi trước khi đặt.</p>
+      <h2>10. Bảo vệ môi trường biển</h2>
+      <p>Vịnh Hạ Long đang đối mặt với ô nhiễm rác thải nghiêm trọng. Tuyệt đối không ném rác xuống biển, không dùng nhựa dùng một lần nếu có thể, và hãy nhặt rác nếu bạn thấy trên biển trong khi kayaking. Vẻ đẹp này cần được bảo tồn cho các thế hệ sau.</p>
+      <div class="highlight-box">🌟 <strong>Tổng kết:</strong> Ngân sách ước tính cho tour Hạ Long 2N1Đ dao động từ 2–4 triệu đồng/người (đã bao gồm ăn uống, ngủ thuyền, hoạt động). Đây là trải nghiệm xứng đáng với từng đồng bạn bỏ ra!</div>
+    `
+  },
+  sapa: {
+    title: 'Review Chi Tiết: Trekking Sa Pa 4 Ngày Cùng Người H\'Mông',
+    author: 'Trần Hoàng Hải Nam', authorInit: 'TN',
+    date: '12 tháng 3, 2025', readTime: '12 phút đọc',
+    tag: 'Review',
+    img: 'images/sapa.jpg',
+    tags: ['🏔 Sa Pa','🥾 Trekking','👗 Văn hóa'],
+    body: `
+      <p>Bốn ngày ở Sa Pa không chỉ là những bước chân leo núi. Đó là hành trình đi vào lòng văn hóa của 6 dân tộc thiểu số cùng tồn tại trên những sườn núi hùng vĩ vùng Tây Bắc. Đây là toàn bộ trải nghiệm của tôi — không tô hồng, không thêm mắm muối.</p>
+      <h2>Ngày 1: Hà Nội → Sa Pa — Khám phá thị trấn</h2>
+      <p>Chuyến tàu đêm từ ga Hà Nội lúc 22h là lựa chọn tiết kiệm và thú vị nhất. Đến Lào Cai lúc sáng sớm, bắt xe buýt hoặc taxi lên Sa Pa (khoảng 38km). Buổi chiều dạo quanh thị trấn, thăm Nhà thờ đá cổ kính xây từ thời Pháp thuộc, và thưởng thức một bát phở Sa Pa ăn kèm thắng cố tại chợ.</p>
+      <div class="tip-box"><strong>💡 Lưu ý:</strong> Thời tiết Sa Pa có thể thay đổi chóng mặt. Nhiệt độ ban đêm có thể xuống 5–10°C ngay cả vào mùa hè. Mang theo áo ấm, áo khoác gió và ủng chống nước.</div>
+      <h2>Ngày 2: Trekking bản Cát Cát và thung lũng Mường Hoa</h2>
+      <p>Xuất phát lúc 7h30 cùng hướng dẫn viên người H'Mông tên Mây — một phụ nữ 28 tuổi nói tiếng Việt lẫn tiếng Anh lưu loát. Con đường mòn dẫn xuống thung lũng Mường Hoa qua những thửa ruộng bậc thang đẹp đến nghẹt thở.</p>
+      <p>Điểm dừng chân tại bản Cát Cát của người H'Mông Đen. Được mời vào nhà một gia đình, ăn trưa với cơm nương, gà đồi và rau rừng xào tỏi. Bữa cơm ấm áp hơn bất kỳ nhà hàng nào. Buổi chiều, tham quan thác Cát Cát và công trình thủy điện mini do người Pháp xây từ những năm 1900.</p>
+      <h2>Ngày 3: Leo Fansipan — Nóc nhà Đông Dương</h2>
+      <p>Có hai lựa chọn: đi cáp treo (nhanh, tiện, khoảng 750.000 VNĐ/người) hoặc trekking 2 ngày 1 đêm. Tôi chọn cáp treo vì lịch trình không đủ thời gian. Đỉnh núi ở 3.143m, nhiệt độ thấp hơn dưới thị trấn khoảng 10–15 độ. Mang theo áo ấm dù trời nắng bên dưới!</p>
+      <p>Buổi chiều ghé bản Tả Van của người Giáy — nơi có những ngôi nhà sàn truyền thống và nghề thêu thủ công tinh xảo. Mua vài sản phẩm thêu để ủng hộ bà con.</p>
+      <h2>Ngày 4: Chợ phiên Bắc Hà</h2>
+      <p>Chợ phiên Bắc Hà họp mỗi Chủ Nhật — một trong những chợ phiên đẹp nhất Việt Nam, nơi người H'Mông Hoa, Tày, Nùng, Phù Lá mang hàng hóa xuống giao thương với trang phục rực rỡ như một bức tranh dân gian sống động.</p>
+      <div class="highlight-box">💰 <strong>Chi phí ước tính 4 ngày:</strong> Tàu HN–Lào Cai–HN: 500K | Xe Lào Cai–Sa Pa: 200K | Homestay 3 đêm: 600K | Cáp treo Fansipan: 750K | Ăn uống 4 ngày: 600K | Tour trekking: 400K. <strong>Tổng: ~3.050.000 VNĐ</strong></div>
+      <h2>Hướng dẫn viên người bản địa — Lựa chọn bắt buộc</h2>
+      <p>Đừng tự trekking nếu chưa thuộc đường. Địa hình Sa Pa phức tạp, nhiều con đường mòn giống nhau và có thể bị lạc. Thuê hướng dẫn viên người H'Mông không chỉ an toàn hơn mà còn giúp bạn được vào những bản làng thật sự, không phải khu du lịch giả tạo được dựng lên cho khách.</p>
+    `
+  },
+  japan: {
+    title: 'Bí Quyết Du Lịch Nhật Bản Mùa Hoa Anh Đào Tiết Kiệm Nhất',
+    author: 'Đỗ Minh Hưng', authorInit: 'ĐH',
+    date: '10 tháng 3, 2025', readTime: '10 phút đọc',
+    tag: 'Mẹo Hay',
+    img: 'https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=1200&q=80',
+    tags: ['🌸 Nhật Bản','💴 Tiết kiệm','✈️ Quốc tế'],
+    body: `
+      <p>Mùa hoa anh đào (Hanami) là đỉnh cao của lịch du lịch Nhật Bản. Giá cả tăng vọt, khách sạn cháy phòng và mọi góc đường đều đẹp không thể tin được. Nhưng với một chút khôn ngoan, bạn hoàn toàn có thể trải nghiệm trọn vẹn mà không cần phá vỡ ngân sách.</p>
+      <h2>1. Book vé máy bay và khách sạn trước 3–4 tháng</h2>
+      <p>Đây là quy tắc vàng. Vé bay Tokyo/Osaka vào tháng 3–4 rất đắt nếu mua muộn. Hãy đặt từ tháng 11–12 năm trước. Ưu tiên các hãng bay như VietJet, Bamboo (bay thẳng Hà Nội/TP.HCM – Tokyo), hoặc ANA/Japan Airlines khi có sale.</p>
+      <h2>2. Thời điểm anh đào nở — Đừng đoán mò</h2>
+      <p>Anh đào nở đúng 1–2 tuần, thường từ cuối tháng 3 đến đầu tháng 4 ở Tokyo. Theo dõi dự báo Sakura Forecast của Japan Meteorological Corporation hoặc website japan-guide.com để biết chính xác. Đặt vé theo ngày dự báo, không phải theo lịch cứng.</p>
+      <div class="tip-box"><strong>💡 Mẹo:</strong> Thay vì Tokyo đắt đỏ, cân nhắc Kyoto (anh đào nở sớm hơn 1–2 ngày), Nara (hươu + anh đào = cực kỳ đáng yêu) hoặc Yoshino (rừng anh đào nổi tiếng nhất Nhật Bản, ít khách hơn).</div>
+      <h2>3. JR Pass — Có cần không?</h2>
+      <p>JR Pass 7 ngày giá khoảng 4.500.000 VNĐ. Chỉ nên mua nếu bạn đi nhiều chặng tàu nhanh (Shinkansen): Tokyo–Kyoto–Osaka. Nếu chỉ ở 1–2 thành phố, mua thẻ IC (Suica/Pasmo) sẽ tiết kiệm hơn. Dùng trang seat61.com để tính toán xem có đáng mua không.</p>
+      <h2>4. Ăn uống rẻ mà ngon</h2>
+      <p>Nhật Bản không nhất thiết đắt đỏ nếu bạn biết ăn đúng chỗ. Các chuỗi nhà hàng như Yoshinoya (cơm bò), Matsuya, Sukiya phục vụ bữa ăn đầy đủ chỉ từ 500 yên (~90.000 VNĐ). Convenience store (7-Eleven, Lawson, FamilyMart) bán onigiri, bento, mì ramen ngon đến bất ngờ với giá 100–400 yên. Đây chính là bí mật ăn uống của dân du lịch Nhật thông minh.</p>
+      <h2>5. Chỗ ở — Capsule Hotel và Guesthouse</h2>
+      <p>Capsule hotel không chỉ rẻ (600–1.500 yên/đêm) mà còn là trải nghiệm văn hóa Nhật Bản đáng thử. Hoặc đặt phòng dorm tại các guesthouse trên Booking.com/Hostelworld. Airbnb ở Nhật cũng rất phát triển nếu đi theo nhóm từ 3 người trở lên.</p>
+      <h2>6. Những điểm ngắm hoa miễn phí đẹp nhất Tokyo</h2>
+      <ul>
+        <li><strong>Ueno Park</strong> — Nơi tụ họp picnic truyền thống của người Tokyo, hơn 1.000 cây anh đào</li>
+        <li><strong>Shinjuku Gyoen</strong> — Có phí vào cửa (200 yên) nhưng đẹp nhất Tokyo, đặc biệt mảng weeping cherry (anh đào lá rủ)</li>
+        <li><strong>Meguro River</strong> — Đi dọc bờ sông giữa hai hàng anh đào buổi tối (đèn lồng thắp sáng cực đẹp)</li>
+        <li><strong>Chidorigafuchi</strong> — Chèo thuyền dưới tán anh đào ngay gần Hoàng cung Tokyo</li>
+      </ul>
+      <div class="highlight-box">💰 <strong>Ngân sách tham khảo cho 6 ngày Tokyo:</strong><br>Vé máy bay khứ hồi (mua sớm): ~9–12 triệu VNĐ<br>Khách sạn 6 đêm (guesthouse): ~3–4 triệu VNĐ<br>Di chuyển nội thành (thẻ Suica): ~1 triệu VNĐ<br>Ăn uống 6 ngày: ~2–3 triệu VNĐ<br>Tham quan & mua sắm: ~3 triệu VNĐ<br><strong>Tổng: ~18–23 triệu VNĐ/người</strong></div>
+    `
+  },
+  hoian: {
+    title: 'Hội An – Thành Phố Của Ánh Đèn Lồng Và Ký Ức',
+    author: 'Phan Ngọc Khánh', authorInit: 'PK',
+    date: '5 tháng 3, 2025', readTime: '7 phút đọc',
+    tag: 'Điểm Đến',
+    img: 'images/hoian.jpg',
+    tags: ['🏮 Hội An','🎨 Di sản','🌃 Đêm phố cổ'],
+    body: `
+      <p>Có những nơi bạn đến một lần rồi muốn quay lại mãi. Hội An là như vậy. Thành phố nhỏ bên bờ sông Thu Bồn này không ồn ào, không hiện đại, nhưng nó chạm vào trái tim bằng cách riêng của mình — qua từng chiếc đèn lồng lắc lư trong gió, qua hương phở cao lầu thoang thoảng, qua tiếng guốc mộc trên đường đá cũ.</p>
+      <h2>Phố Cổ — Di sản UNESCO sống động nhất Việt Nam</h2>
+      <p>Phố Cổ Hội An được UNESCO công nhận là Di sản Văn hóa Thế giới năm 1999, nhưng điều làm nó khác biệt là nó không chỉ tồn tại trong bảo tàng — nó đang sống, đang thở, đang thay đổi từng ngày. Hơn 1.000 công trình lịch sử được bảo tồn nguyên vẹn, từ hội quán người Hoa đến nhà phố cổ của thương nhân Nhật Bản thế kỷ 17.</p>
+      <h2>Cầu Nhật Bản — Biểu tượng không thể bỏ qua</h2>
+      <p>Xây dựng từ đầu thế kỷ 17 bởi cộng đồng thương nhân Nhật Bản, Cầu Chùa (Lai Viễn Kiều) là công trình kiến trúc độc đáo nhất Hội An. Ngắm cầu đẹp nhất vào buổi tối khi đèn lồng thắp sáng và ánh đèn phản chiếu trên mặt nước.</p>
+      <div class="tip-box"><strong>💡 Mẹo:</strong> Vé tham quan phố cổ (120.000 VNĐ) cho phép vào 5 điểm trong 5 hạng mục: nhà cổ, bảo tàng, hội quán, nhà thờ tộc, chùa. Hãy chọn khôn ngoan!</div>
+      <h2>Đêm rằm — Hội An dưới ánh đèn lồng</h2>
+      <p>Vào đêm 14 âm lịch hàng tháng, toàn bộ điện thành phố tắt đi, chỉ còn ánh đèn lồng màu sắc rực rỡ thắp sáng từng con phố. Người dân mặc áo dài truyền thống, thả hoa đăng xuống sông, biểu diễn dân ca bài chòi. Đây là trải nghiệm không thể tìm thấy ở bất kỳ đâu khác trên thế giới.</p>
+      <h2>Ẩm thực Hội An — Đặc sản không thể bỏ qua</h2>
+      <ul>
+        <li><strong>Cao lầu</strong> — Mì đặc biệt chỉ làm được ở Hội An nhờ nước giếng Bá Lễ và tro củi từ rừng Cù Lao Chàm</li>
+        <li><strong>Cơm gà Hội An</strong> — Gà ta thả vườn, cơm nấu nước hầm gà, ăn kèm rau sống và tương ớt xanh</li>
+        <li><strong>Bánh mì Phượng</strong> — Anthony Bourdain từng gọi đây là "chiếc bánh mì ngon nhất thế giới"</li>
+        <li><strong>Hoành thánh chiên</strong> — Đặc sản ảnh hưởng từ ẩm thực Quảng Đông của người Hoa di cư</li>
+      </ul>
+      <h2>Làng nghề truyền thống</h2>
+      <p>Làng gốm Thanh Hà (3km từ trung tâm) và làng rau Trà Quế (3km) là những điểm tham quan nên có trong hành trình. Bạn có thể tự tay nặn gốm hoặc tham gia học làm vườn với người nông dân địa phương — những trải nghiệm mà không app du lịch nào có thể thay thế.</p>
+      <div class="highlight-box">🕐 <strong>Thời gian lý tưởng:</strong> Tháng 2–4 (sau Tết, trời đẹp) và tháng 9–10. Tránh tháng 10–11 vì đây là mùa mưa lũ, phố cổ có thể bị ngập.</div>
+    `
+  },
+  phuquoc: {
+    title: 'Phú Quốc: Từ Hòn Đảo Ngủ Quên Đến Thiên Đường Nghỉ Dưỡng',
+    author: 'Nguyễn Lê Hà Linh', authorInit: 'NL',
+    date: '28 tháng 2, 2025', readTime: '9 phút đọc',
+    tag: 'Điểm Đến',
+    img: 'images/phuquoc.jpg',
+    tags: ['🏝 Phú Quốc','🌊 Biển đảo','🌅 Nghỉ dưỡng'],
+    body: `
+      <p>Mười năm trước, Phú Quốc là hòn đảo nhỏ hầu như bị lãng quên với những con đường đất đỏ và vài ba khách sạn mini dành cho dân phượt ưa mạo hiểm. Ngày nay, nó đã trở thành điểm đến sang chảnh ngang hàng với Maldives hay Boracay trong mắt khách quốc tế. Sự thay đổi đó có thứ được, có thứ mất — và đây là những gì bạn cần biết.</p>
+      <h2>Phú Quốc bây giờ có gì?</h2>
+      <p>Cảng hàng không quốc tế Phú Quốc đón hàng chục chuyến bay trực tiếp mỗi ngày từ Hà Nội, TP.HCM, và thậm chí từ nước ngoài. VinWonders — công viên giải trí quy mô lớn nhất Đông Nam Á — Safari, Grand World, và hàng chục resort 5 sao đã biến hòn đảo thành một tiểu Maldives nhiệt đới.</p>
+      <h2>Đâu là Phú Quốc còn nguyên sơ?</h2>
+      <p>Muốn tìm lại Phú Quốc cũ, hãy đi về phía Bắc đảo (xã Gành Dầu, Bãi Thơm). Những bãi biển ở đây vẫn vắng lặng, nước trong vắt và không có resort chen chúc. Bãi Dài và Bãi Vòng ở phía Đông cũng ít bị khai thác hơn so với Long Beach ở phía Tây.</p>
+      <h2>Những điểm không thể bỏ qua</h2>
+      <ul>
+        <li><strong>Bãi Sao</strong> — Bãi biển cát trắng mịn nhất Phú Quốc, nước xanh trong như pha lê</li>
+        <li><strong>Chợ đêm Phú Quốc</strong> — Hải sản tươi sống, ăn tại chỗ với giá bình dân</li>
+        <li><strong>Cơ sở sản xuất nước mắm Phú Quốc</strong> — Loại nước mắm ngon nhất Việt Nam được làm theo cách truyền thống 200 năm</li>
+        <li><strong>VinWonders & Safari</strong> — Nếu đi cùng gia đình có trẻ nhỏ, đây là lựa chọn hoàn hảo</li>
+        <li><strong>Lặn ngắm san hô tại Hòn Thơm</strong> — Rạn san hô phong phú nhất vịnh Thái Lan</li>
+      </ul>
+      <div class="tip-box"><strong>💡 Thuê xe máy hay xe điện?</strong> Đảo rộng (~570km²) nên thuê xe máy hoặc xe tay ga là cách di chuyển linh hoạt nhất, giá khoảng 100–150K/ngày. Xe điện 4 chỗ ngày càng phổ biến và thân thiện môi trường hơn.</div>
+      <h2>Thời điểm nên đến</h2>
+      <p>Mùa khô (tháng 11 đến tháng 4 năm sau) là thời gian lý tưởng nhất: trời nắng, biển êm, nước trong. Tháng 5–10 là mùa mưa, biển có sóng lớn và nhiều dịch vụ lặn biển tạm dừng. Tuy nhiên, giá phòng mùa thấp điểm rẻ hơn 30–50% và ít đông đúc hơn đáng kể.</p>
+      <div class="highlight-box">🏷 <strong>Mẹo tiết kiệm:</strong> Đặt combo vé máy bay + khách sạn trên các app như Klook, Agoda, Booking sớm 2–3 tháng có thể tiết kiệm đến 40%. Resort 4 sao mùa thấp điểm giá chỉ từ 1,5–2 triệu đồng/đêm!</div>
+    `
+  },
+  bali: {
+    title: 'Checklist Đi Bali Không Bao Giờ Hối Hận',
+    author: 'Nguyễn Hưng Thịnh', authorInit: 'NT',
+    date: '18 tháng 2, 2025', readTime: '8 phút đọc',
+    tag: 'Mẹo Hay',
+    img: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1200&q=80',
+    tags: ['🌴 Bali','✅ Checklist','🛂 Thủ tục'],
+    body: `
+      <p>Bali không bao giờ làm khách du lịch thất vọng — trừ khi bạn đến mà không chuẩn bị gì. Vì thế, đây là checklist đầy đủ nhất từ trải nghiệm thực tế của một người đã đến Bali 3 lần.</p>
+      <h2>✅ Trước khi đi</h2>
+      <ul>
+        <li><strong>Visa:</strong> Công dân Việt Nam được miễn thị thực khi đến Indonesia, lưu trú tối đa 30 ngày. Hộ chiếu còn hạn ít nhất 6 tháng.</li>
+        <li><strong>Vé máy bay:</strong> Bay thẳng từ TP.HCM (Lion Air, Citilink, AirAsia) hoặc Hà Nội quá cảnh Singapore/Kuala Lumpur. Giá vé tốt nhất mua trước 1–2 tháng.</li>
+        <li><strong>Bảo hiểm du lịch:</strong> Bắt buộc. Chi phí y tế ở Bali không rẻ và bệnh viện tốt chỉ ở Denpasar.</li>
+        <li><strong>Đổi tiền:</strong> Đổi USD sang Rupiah Indonesia (IDR) tại Việt Nam hoặc tại các quầy đổi tiền uy tín ở Kuta/Seminyak. Tránh đổi tại sân bay vì tỷ giá kém.</li>
+      </ul>
+      <h2>✅ Ở đâu tại Bali?</h2>
+      <ul>
+        <li><strong>Ubud</strong> — Tâm linh, văn hóa, nghệ thuật. Thích hợp cho những ai muốn "digital detox" và trải nghiệm tâm linh Bali thực sự</li>
+        <li><strong>Seminyak / Canggu</strong> — Beach club, surf, quán cà phê "Instagram worthy", sống về đêm</li>
+        <li><strong>Nusa Dua</strong> — Resort sang chảnh, phù hợp gia đình và tuần trăng mật</li>
+        <li><strong>Nusa Penida</strong> — Đảo nhỏ ngoài khơi, hoang sơ và đẹp kinh ngạc (khuyến nghị đi 1–2 ngày)</li>
+      </ul>
+      <div class="tip-box"><strong>💡 Thuê xe máy:</strong> Khoảng 60–80K IDR/ngày (~100–130K VNĐ). Hãy lấy bằng lái xe quốc tế trước khi đi, cảnh sát Bali thường xuyên kiểm tra và phạt khách nước ngoài không có bằng.</div>
+      <h2>✅ Lễ nghi tại đền Hindu</h2>
+      <p>Bali là hòn đảo Hindu duy nhất của Indonesia. Khi vào đền, bắt buộc phải mặc sarong (khăn quấn) — thường được cho mượn miễn phí hoặc thuê tại cổng. Không mặc quần đùi, không để vai trần. Phụ nữ đang trong kỳ kinh nguyệt không nên vào đền theo truyền thống bản địa.</p>
+      <h2>✅ Ăn gì ở Bali?</h2>
+      <ul>
+        <li><strong>Nasi goreng</strong> — Cơm chiên đặc trưng, ăn ở warung (quán ăn bình dân) giá chỉ 20–30K IDR</li>
+        <li><strong>Babi guling</strong> — Heo sữa quay (lưu ý: không dành cho người ăn chay/đạo Hồi)</li>
+        <li><strong>Sate lilit</strong> — Nem nướng xiên làm từ cá/thịt trộn dừa bào</li>
+        <li><strong>Es campur</strong> — Đá bào trộn nhiều topping ngọt, giải nhiệt hoàn hảo</li>
+      </ul>
+      <h2>✅ Những điều cần tránh</h2>
+      <ul>
+        <li>Không chạm đầu người Bali — đầu là nơi thiêng liêng trong văn hóa Hindu</li>
+        <li>Không chỉ trỏ bằng ngón tay — dùng bàn tay mở hoặc ngón cái</li>
+        <li>Không mặc đồ tắm ra phố — chỉ mặc trong khuôn viên resort hoặc tại bãi biển</li>
+        <li>Cẩn thận khi mua đồ — nhiều nơi bán đồ giả mạo thương hiệu</li>
+      </ul>
+      <div class="highlight-box">🌟 <strong>Trải nghiệm không thể bỏ:</strong> Xem bình minh trên đỉnh Batur (dậy lúc 2h sáng, leo 2 tiếng, nhưng khung cảnh xứng đáng), tắm suối thiêng Tirta Empul, và đắm mình trong một lớp yoga/meditaion buổi sáng tại Ubud.</div>
+    `
+  },
+  hanoi: {
+    title: 'Ẩm Thực Đường Phố Hà Nội: Hành Trình 36 Phố Phường',
+    author: 'Trịnh Minh Châu', authorInit: 'TC',
+    date: '22 tháng 2, 2025', readTime: '11 phút đọc',
+    tag: 'Kinh nghiệm',
+    img: 'https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=1200&q=80',
+    tags: ['🍜 Ẩm thực','🏙 Hà Nội','🗺 Phố cổ'],
+    body: `
+      <p>Hà Nội có một cách kể chuyện riêng — không phải qua bảo tàng hay tượng đài, mà qua những gánh hàng rong, những quán ăn vỉa hè chỉ bán một món duy nhất từ đời này sang đời khác. Ẩm thực Hà Nội là một bản giao hưởng phong phú mà bạn cần cả một tuần mới nghe hết.</p>
+      <h2>Bắt đầu ngày bằng phở Hà Nội</h2>
+      <p>Phở Hà Nội khác phở Sài Gòn ở chỗ nước dùng trong hơn, ít ngọt hơn, không có giá đỗ và rau húng quế. Hai địa chỉ cổ điển không thể bỏ qua: <strong>Phở Thìn Lò Đúc</strong> (hơn 60 năm tuổi, thịt bò xào trước khi cho vào tô) và <strong>Phở Bát Đàn</strong> (xếp hàng mua phiếu, giữ nguyên hương vị từ những năm 1950s).</p>
+      <h2>Bún chả — Linh hồn của bữa trưa Hà Nội</h2>
+      <p>Nếu phở là buổi sáng thì bún chả là bữa trưa của người Hà Nội. Thịt lợn nướng than hoa thơm phức, chấm cùng nước mắm pha chua ngọt, ăn kèm bún tươi và rau sống. <strong>Bún chả Hương Liên</strong> trên phố Lê Văn Hưu nổi tiếng là nơi Obama và Anthony Bourdain từng ghé ăn năm 2016.</p>
+      <h2>Bánh cuốn Thanh Trì</h2>
+      <p>Đây là bản nguyên thủy của bánh cuốn — không nhân thịt, không hành phi cầu kỳ. Chỉ là lớp bột gạo tráng mỏng tang như giấy, cuộn lại, chan nước mắm ngọt và ăn kèm chả quế. Ngon nhất ở các gánh hàng rong xuất phát từ làng Thanh Trì đi bán buổi sáng sớm tại khu vực phố cổ.</p>
+      <h2>Chả cá Lã Vọng</h2>
+      <p>Đặc sản Hà Nội duy nhất có tên một con phố: Phố Chả Cá. Cá lăng tươi ướp nghệ và mắm tôm, chiên ngập dầu trên chảo mang ra tận bàn, ăn kèm bún, thì là và đậu phộng rang. Nhà hàng Lã Vọng (14 Chả Cá) là địa chỉ nguyên bản hơn 100 năm tuổi.</p>
+      <h2>Cà phê trứng — Phát minh độc đáo của Hà Nội</h2>
+      <p>Không phải cocktail, không phải bánh gato — đây là một ly cà phê đen được phủ lên trên một lớp bọt trứng gà đánh bông mịn, mang vị ngọt béo khó cưỡng. Ra đời từ những năm 1940 khi sữa khan hiếm, cà phê trứng giờ là món "must-try" của mọi du khách đến Hà Nội. Địa chỉ gốc: <strong>Giảng Cà Phê</strong>, 39 Nguyễn Hữu Huân.</p>
+      <div class="highlight-box">🗺 <strong>Gợi ý lịch trình ẩm thực 1 ngày:</strong><br>6h00 — Phở Bát Đàn (phố Bát Đàn)<br>10h00 — Bánh mì Phố Cổ (phố Đinh Tiên Hoàng)<br>12h00 — Bún chả Hương Liên (Lê Văn Hưu)<br>15h00 — Cà phê trứng Giảng<br>18h00 — Bún ốc nguội (phố Hàng Chai)<br>20h00 — Bia hơi vỉa hè Tạ Hiện</div>
+    `
+  }
+};
+
+// ===================== BLOG POST MODAL =====================
+function openBlogPost(id) {
+  const post = BLOG_POSTS[id];
+  if (!post) return;
+  document.getElementById('articleCoverImg').src = post.img;
+  document.getElementById('articleCoverImg').alt = post.title;
+  document.getElementById('articleTag').textContent = post.tag;
+  document.getElementById('articleTitle').textContent = post.title;
+  document.getElementById('articleByline').innerHTML = `<div class="reviewer"><div class="avatar sm">${post.authorInit}</div><div><strong style="font-size:.9rem">${post.author}</strong><span style="margin-left:8px">${post.date} • ${post.readTime}</span></div></div>`;
+  document.getElementById('articleBody').innerHTML = post.body;
+  document.getElementById('articleFooter').innerHTML = post.tags.map(t => `<span class="article-tag-pill">${t}</span>`).join('') + `<button class="btn-orange" style="margin-left:auto" onclick="closeArticleModal();openBookingModal()">Đặt Tour Ngay →</button>`;
+  document.getElementById('articleModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeArticleModal() {
+  document.getElementById('articleModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeArticleOutside(e) {
+  if (e.target.id === 'articleModal') closeArticleModal();
+}
+
+// ===================== DESTINATION DATA =====================
+const DESTINATIONS = {
+  halong: {
+    title: 'Vịnh Hạ Long',
+    subtitle: '📍 Quảng Ninh, Việt Nam • Kỳ quan thiên nhiên thế giới',
+    img: 'images/halong.jpg',
+    desc: 'Vịnh Hạ Long là kỳ quan thiên nhiên thế giới được UNESCO công nhận hai lần (1994 và 2000). Trải rộng trên diện tích 1.553 km², vịnh ôm trong lòng hơn 1.600 hòn đảo và hòn núi đá vôi, trong đó có khoảng 775 đảo được đặt tên. Đây là một trong những điểm đến biển đảo đẹp nhất không chỉ của Việt Nam mà còn của toàn thế giới.',
+    highlights: ['🚢 Du thuyền nghỉ đêm cao cấp','🛶 Kayaking khám phá hang động','🐟 Làng chài nổi truyền thống','🏊 Tắm biển và snorkeling','🌅 Bình minh & hoàng hôn trên vịnh','🦈 Hang Sửng Sốt, Hang Luồn'],
+    info: [
+      {icon:'✈️', title:'Cách đến', desc:'Hà Nội → Hạ Long: xe 3.5h hoặc thủy phi cơ 45 phút'},
+      {icon:'📅', title:'Thời gian lý tưởng', desc:'Tháng 9–11 và tháng 3–4'},
+      {icon:'💰', title:'Chi phí tour', desc:'Từ 2.500.000 VNĐ/người (3N2Đ)'}
+    ],
+    tourName: 'Tour Hạ Long Bay 3N2D', tourLoc: 'Vịnh Hạ Long, Quảng Ninh', tourPrice: '2.500.000 VND'
+  },
+  hoian: {
+    title: 'Hội An',
+    subtitle: '📍 Quảng Nam, Việt Nam • Di sản Văn hóa Thế giới UNESCO',
+    img: 'images/hoian.jpg',
+    desc: 'Hội An là đô thị cổ nằm bên hạ lưu sông Thu Bồn, được UNESCO công nhận là Di sản Văn hóa Thế giới năm 1999. Thành phố nhỏ này lưu giữ hơn 1.000 công trình kiến trúc cổ từ thế kỷ 15–19, phản ánh sự giao thoa văn hóa Việt, Trung Hoa, Nhật Bản và phương Tây trong suốt thời kỳ thương cảng thịnh vượng.',
+    highlights: ['🏮 Phố cổ đèn lồng rực rỡ','🌉 Cầu Nhật Bản 400 năm tuổi','🎎 Đêm Rằm tắt điện huyền ảo','👗 Đặt may áo dài trong 24 giờ','🚲 Đạp xe thăm làng rau Trà Quế','🍜 Cao lầu, cơm gà Hội An'],
+    info: [
+      {icon:'✈️', title:'Cách đến', desc:'Bay đến Đà Nẵng, taxi 30 phút'},
+      {icon:'📅', title:'Thời gian lý tưởng', desc:'Tháng 2–4 và tháng 9–10'},
+      {icon:'💰', title:'Chi phí tour', desc:'Từ 4.500.000 VNĐ/người (4N3Đ)'}
+    ],
+    tourName: 'Tour Hội An – Đà Nẵng 4N3D', tourLoc: 'Hội An & Đà Nẵng', tourPrice: '4.500.000 VND'
+  },
+  sapa: {
+    title: 'Sa Pa',
+    subtitle: '📍 Lào Cai, Việt Nam • Thị trấn vùng cao huyền thoại',
+    img: 'images/sapa.jpg',
+    desc: 'Sa Pa là thị xã thuộc tỉnh Lào Cai, nằm ở độ cao 1.600m so với mực nước biển, tiếp giáp với Trung Quốc. Nơi đây nổi tiếng với ruộng bậc thang tuyệt đẹp, khí hậu mát mẻ quanh năm và sự đa dạng của các dân tộc thiểu số như H\'Mông, Dao, Tày, Giáy. Fansipan — đỉnh núi cao nhất Đông Dương (3.143m) — nằm ngay trong địa phận Sa Pa.',
+    highlights: ['🥾 Trekking đến các bản làng dân tộc','🏔 Leo Fansipan – Nóc nhà Đông Dương','🌾 Ruộng bậc thang Mù Cang Chải','🛍 Chợ phiên Bắc Hà Chủ Nhật','🏠 Homestay với người H\'Mông','☁️ Sương mù huyền ảo buổi sáng sớm'],
+    info: [
+      {icon:'✈️', title:'Cách đến', desc:'Hà Nội → Lào Cai: tàu đêm + xe buýt 1h'},
+      {icon:'📅', title:'Thời gian lý tưởng', desc:'Tháng 9–10 (lúa chín), tháng 3–4'},
+      {icon:'💰', title:'Chi phí tour', desc:'Từ 3.200.000 VNĐ/người (4N3Đ)'}
+    ],
+    tourName: 'Sa Pa Trekking 4N3D', tourLoc: 'Sa Pa, Lào Cai', tourPrice: '3.200.000 VND'
+  },
+  danang: {
+    title: 'Đà Nẵng',
+    subtitle: '📍 Đà Nẵng, Việt Nam • Thành phố đáng sống nhất Việt Nam',
+    img: 'images/danang.jpg',
+    desc: 'Đà Nẵng là thành phố trực thuộc trung ương lớn thứ 4 Việt Nam, nằm ở miền Trung với bờ biển dài tuyệt đẹp. Thành phố này kết hợp hoàn hảo giữa biển xanh cát trắng, các di sản văn hóa lịch sử và cơ sở hạ tầng hiện đại. Đây cũng là cửa ngõ lý tưởng để khám phá Hội An, Mỹ Sơn và Bà Nà Hills.',
+    highlights: ['🌉 Cầu Rồng phun lửa mỗi cuối tuần','🏖 Bãi biển Mỹ Khê dài 30km','🚡 Cáp treo Bà Nà Hills – Sun World','🗿 Di tích Mỹ Sơn (cách 60km)','🍢 Bún mắm nêm, mì Quảng đặc sản','🌃 Phố đi bộ Bạch Đằng về đêm'],
+    info: [
+      {icon:'✈️', title:'Cách đến', desc:'Bay thẳng từ Hà Nội/TP.HCM, chỉ 1–1.5 giờ'},
+      {icon:'📅', title:'Thời gian lý tưởng', desc:'Tháng 5–8 (mùa khô, biển đẹp)'},
+      {icon:'💰', title:'Chi phí tour', desc:'Từ 4.500.000 VNĐ/người (4N3Đ)'}
+    ],
+    tourName: 'Tour Đà Nẵng – Hội An 4N3D', tourLoc: 'Đà Nẵng & Hội An', tourPrice: '4.500.000 VND'
+  },
+  phuquoc: {
+    title: 'Phú Quốc',
+    subtitle: '📍 Kiên Giang, Việt Nam • Đảo ngọc nhiệt đới',
+    img: 'images/phuquoc.jpg',
+    desc: 'Phú Quốc là hòn đảo lớn nhất Việt Nam với diện tích 574 km², nằm trong vịnh Thái Lan. Được mệnh danh là "Đảo Ngọc", Phú Quốc nổi tiếng với những bãi biển cát trắng mịn, làn nước xanh trong và hoàng hôn tuyệt sắc. Đảo cũng là nơi sản xuất nước mắm truyền thống ngon nhất Việt Nam.',
+    highlights: ['🏖 Bãi Sao – Bãi biển đẹp nhất Việt Nam','🐠 Lặn ngắm san hô Hòn Thơm','🌅 Hoàng hôn tại Dinh Cậu','🐟 Nước mắm Phú Quốc 200 năm tuổi','🎡 VinWonders & Safari','🍦 Grand World – khu nghỉ dưỡng 5 sao'],
+    info: [
+      {icon:'✈️', title:'Cách đến', desc:'Bay thẳng từ Hà Nội/TP.HCM đến sân bay Phú Quốc'},
+      {icon:'📅', title:'Thời gian lý tưởng', desc:'Tháng 11 – tháng 4 (mùa khô)'},
+      {icon:'💰', title:'Chi phí tour', desc:'Từ 5.200.000 VNĐ/người (4N3Đ)'}
+    ],
+    tourName: 'Phú Quốc Nghỉ Dưỡng 4N3D', tourLoc: 'Phú Quốc, Kiên Giang', tourPrice: '5.200.000 VND'
+  },
+  bali: {
+    title: 'Bali, Indonesia',
+    subtitle: '📍 Bali, Indonesia • Hòn đảo của các vị thần',
+    img: 'https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=1200&q=80',
+    desc: 'Bali là hòn đảo nhỏ nhất trong số 5 đảo lớn của Indonesia nhưng lại là điểm đến du lịch nổi tiếng nhất. Với nền văn hóa Hindu độc đáo giữa quốc gia Hồi giáo lớn nhất thế giới, Bali mê hoặc du khách bởi sự kết hợp hoàn hảo của thiên nhiên hoang sơ, nghệ thuật truyền thống và cuộc sống tâm linh sâu sắc.',
+    highlights: ['🌅 Ruộng bậc thang Tegallalang, Ubud','🛕 Đền Tanah Lot và Uluwatu trên vách đá','🏄 Lướt sóng tại Kuta & Canggu','🧘 Yoga và meditation tại Ubud','🌋 Leo núi Batur xem bình minh','🐠 Lặn biển tại Nusa Penida'],
+    info: [
+      {icon:'✈️', title:'Cách đến', desc:'Bay từ TP.HCM ~2h45, từ Hà Nội quá cảnh ~5–7h'},
+      {icon:'📅', title:'Thời gian lý tưởng', desc:'Tháng 4–10 (mùa khô)'},
+      {icon:'💰', title:'Chi phí tour', desc:'Từ 14.900.000 VNĐ/người (6N5Đ)'}
+    ],
+    tourName: 'Tour Bali 6N5D', tourLoc: 'Bali, Indonesia', tourPrice: '14.900.000 VND'
+  },
+  nhatban: {
+    title: 'Nhật Bản',
+    subtitle: '📍 Tokyo, Kyoto & Osaka, Nhật Bản • Xứ hoa anh đào',
+    img: 'https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=1200&q=80',
+    desc: 'Nhật Bản — nơi truyền thống và hiện đại cùng tồn tại trong sự hài hòa hoàn hảo. Từ những ngôi đền cổ nghìn năm tuổi đến những tòa nhà chọc trời sáng rực, từ lễ hội hoa anh đào lãng mạn đến làn sóng anime và manga toàn cầu — Nhật Bản luôn là điểm đến trong mơ của hàng triệu người.',
+    highlights: ['🌸 Mùa hoa anh đào tháng 3–4','🏯 Lâu đài Himeji, Osaka','⛩ Đền Fushimi Inari nghìn cổng torii','🚄 Trải nghiệm Shinkansen bullet train','🍜 Ramen, sushi, soba đỉnh cao','🎎 Mặc Kimono dạo phố Kyoto'],
+    info: [
+      {icon:'✈️', title:'Cách đến', desc:'Bay thẳng Hà Nội/TP.HCM → Tokyo ~6h'},
+      {icon:'📅', title:'Thời gian lý tưởng', desc:'Tháng 3–4 (anh đào) và tháng 9–11'},
+      {icon:'💰', title:'Chi phí tour', desc:'Từ 18.900.000 VNĐ/người (6N5Đ)'}
+    ],
+    tourName: 'Tour Nhật Bản 6N5D', tourLoc: 'Tokyo & Kyoto, Nhật Bản', tourPrice: '18.900.000 VND'
+  },
+  ninhbinh: {
+    title: 'Ninh Bình',
+    subtitle: '📍 Ninh Bình, Việt Nam • Vịnh Hạ Long trên cạn',
+    img: 'images/ninhbinh.jpg',
+    desc: 'Ninh Bình được mệnh danh là "Vịnh Hạ Long trên cạn" với những khối núi đá vôi hùng vĩ mọc lên giữa đồng bằng, dòng sông Ngô Đồng uốn lượn và hang động bí ẩn. Nơi đây cũng từng là kinh đô của nước Đại Cồ Việt (thế kỷ 10–11), lưu giữ nhiều di tích lịch sử quý giá.',
+    highlights: ['🚣 Chèo đò Tam Cốc – Bích Động','⛵ Tràng An – Di sản Thế giới UNESCO','🏯 Kinh đô Hoa Lư – Cố đô đầu tiên Việt Nam','🦅 Vườn Quốc gia Cúc Phương','🌾 Đồng lúa chín vàng tháng 5–6','🌅 Hang Múa – Điểm ngắm cảnh đẹp nhất'],
+    info: [
+      {icon:'✈️', title:'Cách đến', desc:'Từ Hà Nội: xe khách/ô tô 2 tiếng'},
+      {icon:'📅', title:'Thời gian lý tưởng', desc:'Tháng 3–4 và tháng 9–11'},
+      {icon:'💰', title:'Chi phí tour', desc:'Từ 1.800.000 VNĐ/người (2N1Đ)'}
+    ],
+    tourName: 'Tour Ninh Bình 2N1D', tourLoc: 'Ninh Bình, Việt Nam', tourPrice: '1.800.000 VND'
+  }
+};
+
+// ===================== DEST DETAIL MODAL =====================
+function openDestDetail(id) {
+  const dest = DESTINATIONS[id];
+  if (!dest) return;
+  document.getElementById('destCoverImg').src = dest.img;
+  document.getElementById('destCoverImg').alt = dest.title;
+  document.getElementById('destTitle').textContent = dest.title;
+  document.getElementById('destSubtitle').textContent = dest.subtitle;
+  document.getElementById('destBookBtn').onclick = function() { closeDestModal(); openBookingModal(dest.tourName, dest.tourLoc, dest.tourPrice); };
+
+  let body = `
+    <h2 style="margin-top:0">Tổng Quan</h2>
+    <p>${dest.desc}</p>
+    <h2>Điểm Nổi Bật</h2>
+    <div class="dest-highlights">
+      ${dest.highlights.map(h => `<div class="dest-highlight-item"><span class="dest-highlight-icon">${h.split(' ')[0]}</span><span>${h.substring(h.indexOf(' ')+1)}</span></div>`).join('')}
+    </div>
+    <h2>Thông Tin Hữu Ích</h2>
+    <div class="dest-info-grid">
+      ${dest.info.map(i => `<div class="dest-info-item"><div class="icon">${i.icon}</div><strong>${i.title}</strong><span>${i.desc}</span></div>`).join('')}
+    </div>
+  `;
+  document.getElementById('destModalBody').innerHTML = body;
+  document.getElementById('destModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeDestModal() {
+  document.getElementById('destModal').classList.remove('open');
+  document.body.style.overflow = '';
+}
+function closeDestOutside(e) {
+  if (e.target.id === 'destModal') closeDestModal();
+}
+</script>
+</body>
+</html>
